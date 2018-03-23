@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+$fills: ('black': rgb(0, 0, 0),
+        'red': rgb(128, 0, 0),
+        'green': rgb(0, 128, 0),
+        'blue': rgb(0, 0, 128),
+        'cyan': rgb(0, 128, 128),
+        'magenta': rgb(128, 0, 128),
+        'yellow': rgb(128, 128, 0),
+        'grey': rgb(128, 128, 128),
+        'white': rgb(255, 255, 255));
+
+.text {
+  font-weight: bold;
+  font-size: 32px;
+  font-family: 'Open Sans', sans-serif;
+
+  alignment-baseline: middle;
+  text-anchor: middle;
+}
+
+.blink-animation {
+  animation-duration: .5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: both;
+}
+
+@each $name, $color in $fills {
+
+  @each $from in 'black', 'white' {
+
+    @keyframes #{$name}-blink-from-#{$from} {
+      0% {
+        fill: map_get($fills, $from);
+      }
+      100% {
+        fill: #{$color};
+      }
+    }
+
+    @keyframes #{$name}-blink-to-#{$from} {
+      0% {
+        fill: #{$color};
+      }
+      100% {
+        fill: map_get($fills, $from);
+      }
+    }
+  }
+
+  .status-#{$name} {
+    animation-name: #{$name}-blink-from-black;
+    @extend .blink-animation;
+    @extend .#{$name}-bg;
+  }
+
+  .#{$name}-bg {
+    fill: #{$color};
+    opacity: 0.7;
+  }
+
+  .#{$name}-text {
+    fill: #{$color};
+    @extend .text;
+  }
+}
