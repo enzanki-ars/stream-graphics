@@ -11,31 +11,43 @@
         <g id="bottom">
             <g id="name" transform="translate(48,1004)">
                 <rect id="name-bg" class="black-bg" width="192" height="48"/>
-                <text x="96" y="24" class="white-text">enzankiars</text>
+                <text id="name-text" x="96" y="24" class="white-text">
+                    enzankiars
+                </text>
             </g>
-            <g id="scrollbar" transform="translate(260,1004)">
-                <rect id="scrollbar-bg" class="black-bg" width="1399" height="48"/>
-                <text x="699.5" y="24" class="white-text">This will eventually scroll...</text>
+            <g id="bottom-bar" transform="translate(260,1004)">
+                <rect id="bottom-bar-bg" class="black-bg" width="1399" height="48"/>
+                <text id="bottom-bar-text" x="699.5" y="24" class="white-text">
+                    This will not scroll, but instead fade in and out on changes...
+                </text>
             </g>
             <g id="time" transform="translate(1680,1004)">
                 <rect id="time-bg" class="black-bg" width="192" height="48"/>
-                <text x="96" y="24" class="white-text">00:00 PM</text>
+                <text id="time-text" x="96" y="24" class="white-text">
+                    00:00 PM
+                </text>
             </g>
         </g>
         <g id="top">
             <g id="top-header" transform="translate(48,28)">
                 <g id="top-title">
                     <rect id="top-title-bg" class="black-bg status-green" width="192" height="48"/>
-                    <text x="96" y="24" class="white-text">Test</text>
+                    <text id="top-title-text" x="96" y="24" class="white-text">
+                        Test
+                    </text>
                 </g>
                 <g id="top-info" transform="translate(212,0)">
                     <rect id="top-info-bg" class="black-bg" width="362" height="48"/>
-                    <text x="181" y="24" class="white-text">Testing v4 Graphics</text>
+                    <text id="top-info-text" x="181" y="24" class="white-text">
+                        Testing v4 Graphics
+                    </text>
                 </g>
             </g>
             <g id="status" transform="translate(1680,28)">
                 <rect id="status-bg" class="red-bg" width="192" height="48"/>
-                <text x="96" y="24" class="white-text">LIVE</text>
+                <text id="status-text" x="96" y="24" class="white-text">
+                    LIVE
+                </text>
             </g>
         </g>
     </g>
