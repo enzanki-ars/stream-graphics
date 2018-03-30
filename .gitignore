@@ -1,5 +1,8 @@
 .idea
-newest-graphics.css
+**/*.css
+**/*.css.map
+**/*.scss.css
+**/*.scss.css.map
 
 # Created by .ignore support plugin (hsz.mobi)
 ### JetBrains template
@@ -385,4 +388,3 @@ local.properties
 ### TortoiseGit template
 # Project-level settings
 /.tgitconfig
-
