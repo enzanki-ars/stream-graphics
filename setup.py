@@ -13,7 +13,8 @@ setup(
     description='Server for enzanki_ars\'s stream graphics',
     setup_requires=['libsass'],
     requires=['bottle',
-              'libsass'],
+              'libsass',
+              'tornado'],
     packages=['streamgraphicserver'],
     package_dir={
         'streamgraphicserver': 'streamgraphicserver'

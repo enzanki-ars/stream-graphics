@@ -1,6 +1,10 @@
+import logging
+
 import bottle
 from bottle import *
 from sassutils.wsgi import SassMiddleware
+
+logging.basicConfig()
 
 
 def get_assets_path():
@@ -32,4 +36,5 @@ app = SassMiddleware(bottle.app(), {
     'streamgraphicserver': ('assets/css')
 })
 
-run(host='localhost', port=8080, app=app)
+if __name__ == '__main__':
+    bottle.run(host='localhost', port=8080, app=app, server='tornado')
