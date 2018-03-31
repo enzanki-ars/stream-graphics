@@ -18,45 +18,120 @@
 <body>
 <svg width="1920px" height="1080px">
     <g id="overlay">
-        <g id="bottom">
-            <g id="name" transform="translate(48,1004)">
-                <rect id="name-bg" class="black-bg" width="192" height="48"></rect>
-                <text id="name-text" x="96" y="24" class="white-text">
-                    enzankiars
+        <g id="top">
+            <g id="top-title" transform="translate(48,24)">
+                <rect id="top-title-bg" class="green-bg" width="192" height="48"></rect>
+                <text id="top-title-text" x="96" y="24" class="white-text text-bold text-center">
+                    Test
                 </text>
             </g>
-            <g id="bottom-bar" transform="translate(260,1004)">
-                <rect id="bottom-bar-bg" class="black-bg" width="1399" height="48"></rect>
-                <text id="bottom-bar-text" x="699.5" y="24" class="white-text">
-                    This will not scroll, but instead fade in and out on changes...
+            <g id="top-info" transform="translate(256,24)">
+                <rect id="top-info-bg" class="black-bg" width="384" height="48"></rect>
+                <text id="top-info-text" x="192" y="24" class="white-text text-bold text-center">
+                    Testing Graphics
                 </text>
             </g>
-            <g id="time" transform="translate(1680,1004)">
-                <rect id="time-bg" class="black-bg" width="192" height="48"></rect>
-                <text id="time-text" x="96" y="24" class="white-text">
-                    00:00 PM
+
+            <g id="source" transform="translate(1280,24)">
+                <rect id="source-bg" class="black-bg" width="384" height="48"></rect>
+                <text id="source-text" x="192" y="24" class="white-text text-bold text-center">
+                    Source Info Goes Here
+                </text>
+            </g>
+
+            <g id="status" transform="translate(1680,24)">
+                <rect id="status-bg" class="red-bg" width="192" height="48"></rect>
+                <text id="status-text" x="96" y="24" class="white-text text-bold text-center">
+                    LIVE
                 </text>
             </g>
         </g>
-        <g id="top">
-            <g id="top-header" transform="translate(48,28)">
-                <g id="top-title">
-                    <rect id="top-title-bg" class="black-bg status-green" width="192" height="48"></rect>
-                    <text id="top-title-text" x="96" y="24" class="white-text">
-                        Test
+
+        <g id="scoreboard" transform="translate(48,88)">
+            <g id="team1">
+                <g id="team1-name">
+                    <rect id="team1-bg" class="blue-bg" width="320" height="48"></rect>
+                    <text id="team2-text" x="16" y="24" class="white-text text-bold">
+                        Team 1
                     </text>
                 </g>
-                <g id="top-info" transform="translate(212,0)">
-                    <rect id="top-info-bg" class="black-bg" width="362" height="48"></rect>
-                    <text id="top-info-text" x="181" y="24" class="white-text">
-                        Testing v4 Graphics
+
+                <g id="team1-score" transform="translate(320,0)">
+                    <rect id="team2-bg" class="black-bg" width="64" height="48"></rect>
+                    <text id="team2-text" x="32" y="24" class="white-text text-bold text-center">
+                        0
                     </text>
                 </g>
             </g>
-            <g id="status" transform="translate(1680,28)">
-                <rect id="status-bg" class="red-bg" width="192" height="48"></rect>
-                <text id="status-text" x="96" y="24" class="white-text">
-                    LIVE
+
+            <g id="team2" transform="translate(0,48)">
+                <g id="team2-name">
+                    <rect id="team2-bg" class="red-bg" width="320" height="48"></rect>
+                    <text id="team2-text" x="16" y="24" class="white-text text-bold">
+                        Team 2
+                    </text>
+                </g>
+
+                <g id="team2-score" transform="translate(320,0)">
+                    <rect id="team2-bg" class="black-bg" width="64" height="48"></rect>
+                    <text id="team2-text" x="32" y="24" class="white-text text-bold text-center">
+                        0
+                    </text>
+                </g>
+            </g>
+        </g>
+
+        <g id="info">
+            <g id="left-info" transform="translate(48,896)">
+                <rect id="left-info-bg" class="grey-bg" width="362" height="96"></rect>
+                <text id="left-info-text-top" x="16" y="24" class="white-text text-bold">
+                    Left Side
+                </text>
+                <text id="left-info-text-bottom" x="16" y="72" class="white-text">
+                    Testing left side
+                </text>
+            </g>
+
+            <g id="center-info" transform="translate(426,896)">
+                <rect id="left-info-bg" class="grey-bg" width="1068" height="96"></rect>
+                <text id="left-info-text-top" x="534" y="24" class="white-text text-bold text-center">
+                    Center
+                </text>
+                <text id="left-info-text-bottom" x="534" y="72" class="white-text text-center">
+                    This text is in the center
+                </text>
+            </g>
+
+            <g id="right-info" transform="translate(1510,896)">
+                <rect id="left-info-bg" class="grey-bg" width="362" height="96"></rect>
+                <text id="left-info-text-top" x="346" y="24" class="white-text text-bold text-right">
+                    Right Side
+                </text>
+                <text id="left-info-text-bottom" x="346" y="72" class="white-text text-right">
+                    Testing right side
+                </text>
+            </g>
+        </g>
+
+        <g id="bottom">
+            <g id="name" transform="translate(48,1008)">
+                <rect id="name-bg" class="black-bg" width="192" height="48"></rect>
+                <text id="name-text" x="96" y="24" class="white-text text-bold text-center">
+                    enzankiars
+                </text>
+            </g>
+
+            <g id="bottom-bar" transform="translate(256,1008)">
+                <rect id="bottom-bar-bg" class="black-bg" width="1408" height="48"></rect>
+                <text id="bottom-bar-text" x="699.5" y="24" class="white-text text-bold text-center">
+                    This will not scroll, but instead fade in and out on changes...
+                </text>
+            </g>
+
+            <g id="time" transform="translate(1680,1008)">
+                <rect id="time-bg" class="black-bg" width="192" height="48"></rect>
+                <text id="time-text" x="96" y="24" class="white-text text-bold text-center">
+                    00:00 PM
                 </text>
             </g>
         </g>

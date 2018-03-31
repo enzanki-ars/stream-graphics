@@ -1,9 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,900');
 
 $fills: ('black': rgb(0, 0, 0),
         'red': rgb(128, 0, 0),
         'green': rgb(0, 128, 0),
         'blue': rgb(0, 0, 128),
+        'dark-red': rgb(64, 0, 0),
+        'dark-green': rgb(0, 64, 0),
+        'dark-blue': rgb(0, 0, 64),
         'cyan': rgb(0, 128, 128),
         'magenta': rgb(128, 0, 128),
         'yellow': rgb(128, 128, 0),
@@ -11,12 +14,25 @@ $fills: ('black': rgb(0, 0, 0),
         'white': rgb(255, 255, 255));
 
 .text {
-  font-weight: bold;
   font-size: 32px;
   font-family: 'Open Sans', sans-serif;
-
   alignment-baseline: middle;
+}
+
+.text-center {
+  text-anchor: start;
+}
+
+.text-center {
   text-anchor: middle;
+}
+
+.text-right {
+  text-anchor: end;
+}
+
+.text-bold {
+  font-weight: bold;
 }
 
 .blink-animation {

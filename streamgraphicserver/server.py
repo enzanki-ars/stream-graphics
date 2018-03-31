@@ -23,8 +23,13 @@ def get_assets_path():
 
 @bottle.route('/')
 @bottle.route('/overlay')
-def index():
+def overlay():
     return static_file('overlay.html', root=get_assets_path(), mimetype='text/html')
+
+
+@bottle.route('/background')
+def background():
+    return static_file('background.html', root=get_assets_path(), mimetype='text/html')
 
 
 @bottle.route('/assets/<filename>')
