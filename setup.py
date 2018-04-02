@@ -14,7 +14,9 @@ setup(
     setup_requires=['libsass'],
     requires=['bottle',
               'libsass',
-              'tornado'],
+              'tornado',
+              'gevent',
+              'gevent-websocket'],
     packages=['streamgraphicserver'],
     package_dir={
         'streamgraphicserver': 'streamgraphicserver'

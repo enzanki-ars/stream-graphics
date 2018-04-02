@@ -1,3 +1,7 @@
+from gevent import monkey
+
+monkey.patch_all()
+
 import logging
 
 import bottle
@@ -5,6 +9,10 @@ from bottle import *
 from sassutils.wsgi import SassMiddleware
 
 logging.basicConfig()
+
+app = SassMiddleware(bottle.app(), {
+    'streamgraphicserver': ('assets/css')
+})
 
 
 def get_assets_path():
@@ -32,14 +40,33 @@ def background():
     return static_file('background.html', root=get_assets_path(), mimetype='text/html')
 
 
-@bottle.route('/assets/<filename>')
-def assets(filename):
-    return static_file(filename, root=get_assets_path())
+@bottle.route('/assets/css/<filename>')
+def assets_css(filename):
+    return static_file(filename, root=os.path.join(get_assets_path(), 'css'))
 
 
-app = SassMiddleware(bottle.app(), {
-    'streamgraphicserver': ('assets/css')
-})
+@bottle.route('/assets/js/<filename>')
+def assets_js(filename):
+    return static_file(filename, root=os.path.join(get_assets_path(), 'js'))
+
+
+@bottle.route('/websocket')
+def handle_websocket():
+    from geventwebsocket import WebSocketError
+
+    wsock = request.environ.get('wsgi.websocket')
+    if not wsock:
+        abort(400, 'Expected WebSocket request.')
+    while True:
+        try:
+            message = wsock.receive()
+            logging.debug('WS Receive:', message)
+
+        except WebSocketError:
+            break
+
 
 if __name__ == '__main__':
-    bottle.run(host='localhost', port=8080, app=app, server='tornado')
+    from geventwebsocket.handler import WebSocketHandler
+
+    bottle.run(host='localhost', port=8080, app=app, server='gevent', handler_class=WebSocketHandler)
