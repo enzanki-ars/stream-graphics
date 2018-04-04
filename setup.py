@@ -15,8 +15,7 @@ setup(
     requires=['bottle',
               'libsass',
               'tornado',
-              'gevent',
-              'gevent-websocket'],
+              'python-socketio'],
     packages=['streamgraphicserver'],
     package_dir={
         'streamgraphicserver': 'streamgraphicserver'

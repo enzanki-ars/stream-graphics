@@ -76,31 +76,32 @@ $fills: ('black': rgb(0, 0, 0),
   @extend .fade-animation;
 }
 
+.hide {
+  opacity: 0;
+}
+
 @each $name, $color in $fills {
 
-  @each $from in 'black', 'white' {
+  @each $name2, $color2 in $fills {
 
-    @keyframes #{$name}-blink-from-#{$from} {
+    @keyframes #{$name}-blink-#{$name2} {
       0% {
-        fill: map_get($fills, $from);
+        fill: #{$color};
       }
       100% {
-        fill: #{$color};
+        fill: #{$color2};
       }
     }
 
-    @keyframes #{$name}-blink-to-#{$from} {
-      0% {
-        fill: #{$color};
-      }
-      100% {
-        fill: map_get($fills, $from);
-      }
+    .status-#{$name}-to-#{$name2} {
+      animation-name: #{$name}-blink-#{$name2};
+      @extend .blink-animation;
+      @extend .#{$name}-bg;
     }
   }
 
   .status-#{$name} {
-    animation-name: #{$name}-blink-from-black;
+    animation-name: #{$name}-blink-black;
     @extend .blink-animation;
     @extend .#{$name}-bg;
   }
