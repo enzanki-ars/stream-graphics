@@ -5,8 +5,8 @@ from distutils.core import setup
 
 setup(
     name='stream-graphics',
-    version='1.0.0',
-    url='https://enzanki-ars.github.io/live-tv',
+    version='4.0.0',
+    url='https://enzanki-ars.github.io/stream-graphics',
     license='GNU AGPLv3',
     author='Alex Shafer',
     author_email='enzanki.ars@gmail.com',
