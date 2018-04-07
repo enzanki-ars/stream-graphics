@@ -77,7 +77,7 @@ def serve_assets_js(filename):
 @sio.on('connect', namespace='/websocket')
 def sio_connect(sid, environ):
     logger.info('connect: ' + sid)
-    sio.emit('response', sid + ' joined.', namespace='/websocket')
+    sio.emit('online', merge_dicts(get_overlay_defaults(), curr_overlay_info), namespace='/websocket')
 
 
 @sio.on('set text', namespace='/websocket')
