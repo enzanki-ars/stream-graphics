@@ -91,50 +91,60 @@
         </g>
 
         <g id="info" class="{{ overlay['info']['display'] }}">
-            <g id="left-info-top" class="{{ overlay['left-info-top']['display'] }}" transform="translate(48,896)">
-                <rect id="left-info-top-bg" class="{{ overlay['left-info-top']['bg'] }}" width="362" height="48"></rect>
-                <text id="left-info-top-text" x="16" y="24" class="white-text text-bold">
-                    {{ overlay['left-info-top']['text'] }}
-                </text>
-            </g>
-            <g id="left-info-bottom" class="{{ overlay['left-info-bottom']['display'] }}" transform="translate(48,944)">
-                <rect id="left-info-bottom-bg" class="{{ overlay['left-info-bottom']['bg'] }}"
-                      width="362" height="48"></rect>
-                <text id="left-info-bottom-text" x="16" y="24" class="white-text text-left">
-                    {{ overlay['left-info-bottom']['text'] }}
-                </text>
-            </g>
-
-            <g id="center-info-top" class="{{ overlay['center-info-top']['display'] }}" transform="translate(426,896)">
-                <rect id="center-info-top-bg" class="{{ overlay['center-info-top']['bg'] }}"
-                      width="1068" height="48"></rect>
-                <text id="center-info-top-text" x="534" y="24" class="white-text text-bold text-center">
-                    {{ overlay['center-info-top']['text'] }}
-                </text>
-            </g>
-            <g id="center-info-bottom" class="{{ overlay['center-info-bottom']['display'] }}"
-               transform="translate(426,944)">
-                <rect id="center-info-bottom-bg" class="{{ overlay['center-info-bottom']['bg'] }}"
-                      width="1068" height="48"></rect>
-                <text id="center-info-bottom-text" x="534" y="24" class="white-text text-center">
-                    {{ overlay['center-info-bottom']['text'] }}
-                </text>
+            <g id="left-info" class="{{ overlay['left-info']['display'] }}">
+                <g id="left-info-top" class="{{ overlay['left-info-top']['display'] }}" transform="translate(48,896)">
+                    <rect id="left-info-top-bg" class="{{ overlay['left-info-top']['bg'] }}" width="362"
+                          height="48"></rect>
+                    <text id="left-info-top-text" x="16" y="24" class="white-text text-bold">
+                        {{ overlay['left-info-top']['text'] }}
+                    </text>
+                </g>
+                <g id="left-info-bottom" class="{{ overlay['left-info-bottom']['display'] }}"
+                   transform="translate(48,944)">
+                    <rect id="left-info-bottom-bg" class="{{ overlay['left-info-bottom']['bg'] }}"
+                          width="362" height="48"></rect>
+                    <text id="left-info-bottom-text" x="16" y="24" class="white-text text-left">
+                        {{ overlay['left-info-bottom']['text'] }}
+                    </text>
+                </g>
             </g>
 
-            <g id="right-info-top" class="{{ overlay['right-info-top']['display'] }}" transform="translate(1510,896)">
-                <rect id="right-info-top-bg" class="{{ overlay['right-info-top']['bg'] }}"
-                      width="362" height="48"></rect>
-                <text id="right-info-top-text" x="346" y="24" class="white-text text-bold text-right">
-                    {{ overlay['right-info-top']['text'] }}
-                </text>
+            <g id="center-info" class="{{ overlay['center-info']['display'] }}">
+                <g id="center-info-top" class="{{ overlay['center-info-top']['display'] }}"
+                   transform="translate(426,896)">
+                    <rect id="center-info-top-bg" class="{{ overlay['center-info-top']['bg'] }}"
+                          width="1068" height="48"></rect>
+                    <text id="center-info-top-text" x="534" y="24" class="white-text text-bold text-center">
+                        {{ overlay['center-info-top']['text'] }}
+                    </text>
+                </g>
+                <g id="center-info-bottom" class="{{ overlay['center-info-bottom']['display'] }}"
+                   transform="translate(426,944)">
+                    <rect id="center-info-bottom-bg" class="{{ overlay['center-info-bottom']['bg'] }}"
+                          width="1068" height="48"></rect>
+                    <text id="center-info-bottom-text" x="534" y="24" class="white-text text-center">
+                        {{ overlay['center-info-bottom']['text'] }}
+                    </text>
+                </g>
             </g>
-            <g id="right-info-bottom" class="{{ overlay['right-info-bottom']['display'] }}"
-               transform="translate(1510,944)">
-                <rect id="right-info-bottom-bg" class="{{ overlay['right-info-bottom']['bg'] }}"
-                      width="362" height="48"></rect>
-                <text id="right-info-bottom-text" x="346" y="24" class="white-text text-right">
-                    {{ overlay['right-info-bottom']['text'] }}
-                </text>
+
+            <g id="right-info" class="{{ overlay['right-info']['display'] }}">
+                <g id="right-info-top" class="{{ overlay['right-info-top']['display'] }}"
+                   transform="translate(1510,896)">
+                    <rect id="right-info-top-bg" class="{{ overlay['right-info-top']['bg'] }}"
+                          width="362" height="48"></rect>
+                    <text id="right-info-top-text" x="346" y="24" class="white-text text-bold text-right">
+                        {{ overlay['right-info-top']['text'] }}
+                    </text>
+                </g>
+                <g id="right-info-bottom" class="{{ overlay['right-info-bottom']['display'] }}"
+                   transform="translate(1510,944)">
+                    <rect id="right-info-bottom-bg" class="{{ overlay['right-info-bottom']['bg'] }}"
+                          width="362" height="48"></rect>
+                    <text id="right-info-bottom-text" x="346" y="24" class="white-text text-right">
+                        {{ overlay['right-info-bottom']['text'] }}
+                    </text>
+                </g>
             </g>
         </g>
 

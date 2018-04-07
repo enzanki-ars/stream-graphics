@@ -8,17 +8,17 @@
   "top-title": {
     "text": "Testing",
     "bg": "green-bg",
-    "display": "show"
+    "display": "hide"
   },
   "top-info": {
     "text": "Testing Graphics",
     "bg": "black-bg",
-    "display": "show"
+    "display": "hide"
   },
   "source": {
     "text": "Testing Graphics",
     "bg": "black-bg",
-    "display": "show"
+    "display": "hide"
   },
   "status": {
     "text": "LIVE",
@@ -26,7 +26,7 @@
     "display": "show"
   },
   "scoreboard": {
-    "display": "show"
+    "display": "hide"
   },
   "team1": {
     "display": "show"
@@ -55,7 +55,10 @@
     "display": "show"
   },
   "info": {
-    "display": "show"
+    "display": "hide"
+  },
+  "left-info": {
+    "display": "hide"
   },
   "left-info-top": {
     "text": "Left Side",
@@ -67,6 +70,9 @@
     "bg": "grey-bg",
     "display": "show"
   },
+  "center-info": {
+    "display": "hide"
+  },
   "center-info-top": {
     "text": "Center",
     "bg": "grey-bg",
@@ -76,6 +82,9 @@
     "text": "This text is in the center",
     "bg": "grey-bg",
     "display": "show"
+  },
+  "right-info": {
+    "display": "hide"
   },
   "right-info-top": {
     "text": "Right Side",
@@ -98,7 +107,7 @@
   "bottom-bar": {
     "text": "This will not scroll, but instead fade in and out on changes...",
     "bg": "black-bg",
-    "display": "show"
+    "display": "hide"
   },
   "time": {
     "bg": "black-bg",
