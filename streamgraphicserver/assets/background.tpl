@@ -13,7 +13,7 @@
         }
     </style>
 
-    <link rel="stylesheet" type="text/css" href="assets/css/all.scss.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/all.css">
 </head>
 <body>
 <svg width="1920px" height="1080px">

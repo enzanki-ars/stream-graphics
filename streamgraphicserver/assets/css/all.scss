@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,900');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
 $fills: ('black': rgb(0, 0, 0),
         'red': rgb(128, 0, 0),
@@ -10,6 +10,12 @@ $fills: ('black': rgb(0, 0, 0),
         'cyan': rgb(0, 128, 128),
         'magenta': rgb(128, 0, 128),
         'yellow': rgb(128, 128, 0),
+        'pink': rgb(255, 0, 128),
+        'orange': rgb(255, 128, 0),
+        'yellow-green': rgb(128, 255, 0),
+        'blue-green': rgb(0, 255, 128),
+        'light-blue': rgb(0, 128, 255),
+        'violet': rgb(128, 0, 255),
         'grey': rgb(128, 128, 128),
         'white': rgb(255, 255, 255));
 
@@ -78,6 +84,10 @@ $fills: ('black': rgb(0, 0, 0),
 
 .hide {
   opacity: 0;
+}
+
+.show {
+  opacity: 1;
 }
 
 @each $name, $color in $fills {

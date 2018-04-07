@@ -1,5 +1,7 @@
 from gevent import monkey
 
+from streamgraphicserver.util import get_assets_path, get_overlay_defaults, merge_dicts
+
 monkey.patch_all()
 
 import logging
@@ -10,7 +12,6 @@ from bottle import *
 
 from gevent import pywsgi
 from geventwebsocket.handler import WebSocketHandler
-from sassutils.wsgi import SassMiddleware
 
 logger = logging.getLogger(__name__)
 logging.basicConfig()
@@ -18,51 +19,44 @@ logger.setLevel(logging.INFO)
 
 sio = socketio.Server(async_mode='gevent')
 socket_app = socketio.Middleware(sio, bottle.app())
-sass_app = SassMiddleware(socket_app, {
-    'streamgraphicserver': ('assets/css')
-})
-
-overlay_text = {
-    'top-title-text': 'Testing',
-    'top-info-text': 'Testing Graphics',
-    'source-text': 'Testing Graphics',
-    'status-text': 'LIVE',
-    'team1-text': 'Team 1',
-    'team1-score-text': '0',
-    'team2-text': 'Team 2',
-    'team2-score-text': '0',
-    'left-info-text-top': 'Left Side',
-    'left-info-text-bottom': 'Testing left side',
-    'center-info-text-top': 'Center',
-    'center-info-text-bottom': 'This text is in the center',
-    'right-info-text-top': 'Right Side',
-    'right-info-text-bottom': 'Testing right side',
-    'name-text': 'enzankiars',
-    'bottom-bar-text': 'This will not scroll, but instead fade in and out on changes...'
-}
-
-
-def get_assets_path():
-    import os
-    import sys
-
-    import streamgraphicserver.assets
-
-    if getattr(sys, 'frozen', False):
-        assets_path = os.path.join(sys._MEIPASS, 'assets')
-    else:
-        assets_path = os.path.join(
-            streamgraphicserver.assets.__path__[0])
-    return assets_path
-
 
 bottle.TEMPLATE_PATH.insert(0, get_assets_path())
 
+curr_overlay_info = {}
+
+colors = ['black-bg',
+          'red-bg',
+          'green-bg',
+          'blue-bg',
+          'dark-red-bg',
+          'dark-green-bg',
+          'dark-blue-bg',
+          'cyan-bg',
+          'magenta-bg',
+          'yellow-bg',
+          'pink-bg',
+          'orange-bg',
+          'yellow-green-bg',
+          'blue-green-bg',
+          'light-blue-bg',
+          'violet-bg',
+          'grey-bg',
+          'white-bg']
+
 
 @bottle.route('/')
+def serve_overlay():
+    return template('index')
+
+
+@bottle.route('/admin')
+def serve_overlay():
+    return template('admin', overlay=merge_dicts(get_overlay_defaults(), curr_overlay_info), colors=colors)
+
+
 @bottle.route('/overlay')
 def serve_overlay():
-    return template('overlay', overlay_text=overlay_text)
+    return template('overlay', overlay=merge_dicts(get_overlay_defaults(), curr_overlay_info))
 
 
 @bottle.route('/background')
@@ -86,10 +80,32 @@ def sio_connect(sid, environ):
     sio.emit('response', sid + ' joined.', namespace='/websocket')
 
 
-@sio.on('set graphics', namespace='/websocket')
+@sio.on('set text', namespace='/websocket')
 def sio_graphics_event(sid, data):
-    logger.info('graphics event: ' + data)
-    sio.emit('change graphics', data, namespace='/websocket')
+    logger.info('text update event: ' + str(data))
+    curr_overlay_info[data['item']] = {'text': data['value']}
+    sio.emit('change text', data, namespace='/websocket')
+
+
+@sio.on('set bg', namespace='/websocket')
+def sio_bg_event(sid, data):
+    logger.info('bg update event: ' + str(data))
+    curr_overlay_info[data['item']] = {'bg': data['value']}
+    sio.emit('change bg', data, namespace='/websocket')
+
+
+@sio.on('show', namespace='/websocket')
+def sio_show_event(sid, data):
+    logger.info('show event: ' + str(data))
+    curr_overlay_info[data['item']] = {'display': 'show'}
+    sio.emit('change show', data, namespace='/websocket')
+
+
+@sio.on('hide', namespace='/websocket')
+def sio_hid_event(sid, data):
+    logger.info('hide event: ' + str(data))
+    curr_overlay_info[data['item']] = {'display': 'hide'}
+    sio.emit('change hide', data, namespace='/websocket')
 
 
 @sio.on('disconnect', namespace='/websocket')
@@ -98,7 +114,10 @@ def sio_disconnect(sid):
 
 
 if __name__ == '__main__':
-    # bottle.run(host='localhost', port=8080, app=sass_app, server='gevent')
+    import sass
+
+    sass.compile(dirname=(os.path.join(get_assets_path(), 'css'), os.path.join(get_assets_path(), 'css')),
+                 output_style='compressed')
 
     logger.info('Starting server at 0.0.0.0 on port 8080.')
-    pywsgi.WSGIServer(('', 8080), sass_app, handler_class=WebSocketHandler).serve_forever()
+    pywsgi.WSGIServer(('', 8080), socket_app, handler_class=WebSocketHandler).serve_forever()

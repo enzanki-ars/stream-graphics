@@ -1,8 +1,6 @@
 # enzanki_ars's Stream Graphics (v4)
 
-_Work in Progress._
-
-_This is not in use yet, but hopefully will be soon._
+_v1.0.0_
 
 ## Demo
 

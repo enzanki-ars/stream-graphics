@@ -1,0 +1,107 @@
+{
+  "overlay": {
+    "display": "show"
+  },
+  "top": {
+    "display": "show"
+  },
+  "top-title": {
+    "text": "Testing",
+    "bg": "green-bg",
+    "display": "show"
+  },
+  "top-info": {
+    "text": "Testing Graphics",
+    "bg": "black-bg",
+    "display": "show"
+  },
+  "source": {
+    "text": "Testing Graphics",
+    "bg": "black-bg",
+    "display": "show"
+  },
+  "status": {
+    "text": "LIVE",
+    "bg": "red-bg",
+    "display": "show"
+  },
+  "scoreboard": {
+    "display": "show"
+  },
+  "team1": {
+    "display": "show"
+  },
+  "team1-name": {
+    "text": "Team 1",
+    "bg": "blue-bg",
+    "display": "show"
+  },
+  "team1-score": {
+    "text": "0",
+    "bg": "black-bg",
+    "display": "show"
+  },
+  "team2": {
+    "display": "show"
+  },
+  "team2-name": {
+    "text": "Team 2",
+    "bg": "red-bg",
+    "display": "show"
+  },
+  "team2-score": {
+    "text": "0",
+    "bg": "black-bg",
+    "display": "show"
+  },
+  "info": {
+    "display": "show"
+  },
+  "left-info-top": {
+    "text": "Left Side",
+    "bg": "grey-bg",
+    "display": "show"
+  },
+  "left-info-bottom": {
+    "text": "Testing left side",
+    "bg": "grey-bg",
+    "display": "show"
+  },
+  "center-info-top": {
+    "text": "Center",
+    "bg": "grey-bg",
+    "display": "show"
+  },
+  "center-info-bottom": {
+    "text": "This text is in the center",
+    "bg": "grey-bg",
+    "display": "show"
+  },
+  "right-info-top": {
+    "text": "Right Side",
+    "bg": "grey-bg",
+    "display": "show"
+  },
+  "right-info-bottom": {
+    "text": "Testing right side",
+    "bg": "grey-bg",
+    "display": "show"
+  },
+  "bottom": {
+    "display": "show"
+  },
+  "name": {
+    "text": "enzankiars",
+    "bg": "black-bg",
+    "display": "show"
+  },
+  "bottom-bar": {
+    "text": "This will not scroll, but instead fade in and out on changes...",
+    "bg": "black-bg",
+    "display": "show"
+  },
+  "time": {
+    "bg": "black-bg",
+    "display": "show"
+  }
+}
