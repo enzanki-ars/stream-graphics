@@ -56,7 +56,10 @@ def serve_overlay():
 
 @bottle.route('/overlay')
 def serve_overlay():
-    return template('overlay', overlay=merge_dicts(get_overlay_defaults(), curr_overlay_info))
+    try:
+        return template('overlay', overlay=merge_dicts(get_overlay_defaults(), curr_overlay_info))
+    except:
+        print(curr_overlay_info)
 
 
 @bottle.route('/background')
@@ -83,28 +86,40 @@ def sio_connect(sid, environ):
 @sio.on('set text', namespace='/websocket')
 def sio_graphics_event(sid, data):
     logger.info('text update event: ' + str(data))
-    curr_overlay_info[data['item']] = {'text': data['value']}
+    if data['item'] in curr_overlay_info:
+        curr_overlay_info[data['item']]['text'] = data['value']
+    else:
+        curr_overlay_info[data['item']] = {'text': data['value']}
     sio.emit('change text', data, namespace='/websocket')
 
 
 @sio.on('set bg', namespace='/websocket')
 def sio_bg_event(sid, data):
     logger.info('bg update event: ' + str(data))
-    curr_overlay_info[data['item']] = {'bg': data['value']}
+    if data['item'] in curr_overlay_info:
+        curr_overlay_info[data['item']]['bg'] = data['value']
+    else:
+        curr_overlay_info[data['item']] = {'bg': data['value']}
     sio.emit('change bg', data, namespace='/websocket')
 
 
 @sio.on('show', namespace='/websocket')
 def sio_show_event(sid, data):
     logger.info('show event: ' + str(data))
-    curr_overlay_info[data['item']] = {'display': 'show'}
+    if data['item'] in curr_overlay_info:
+        curr_overlay_info[data['item']]['display'] = 'show'
+    else:
+        curr_overlay_info[data['item']] = {'display': 'show'}
     sio.emit('change show', data, namespace='/websocket')
 
 
 @sio.on('hide', namespace='/websocket')
 def sio_hid_event(sid, data):
     logger.info('hide event: ' + str(data))
-    curr_overlay_info[data['item']] = {'display': 'hide'}
+    if data['item'] in curr_overlay_info:
+        curr_overlay_info[data['item']]['display'] = 'hide'
+    else:
+        curr_overlay_info[data['item']] = {'display': 'hide'}
     sio.emit('change hide', data, namespace='/websocket')
 
 

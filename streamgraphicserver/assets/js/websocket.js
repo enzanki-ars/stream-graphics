@@ -1,4 +1,31 @@
 var socket = io.connect('/websocket');
+
+socket.on('connect', function () {
+    console.info('connect');
+});
+socket.on('reconnect', function (attemptNumber) {
+    console.info('reconnect');
+});
+socket.on('connect_timeout', function (timeout) {
+    console.info('connect_timeout');
+});
+socket.on('reconnect_error', function (error) {
+    console.info('reconnect_error');
+});
+socket.on('connect_error', function (error) {
+    console.info('connect_error');
+});
+socket.on('error', function (error) {
+    console.info('error');
+});
+socket.on('reconnect_failed', function () {
+    console.info('reconnect_failed');
+});
+socket.on('disconnect', function (reason) {
+    console.info('disconnect');
+});
+
+
 socket.on('online', function (msg) {
     console.info('online');
     updateAll(msg);
@@ -27,76 +54,76 @@ socket.on('change show', function (msg) {
 });
 
 function updateAll(msg) {
-    for (const item in msg) {
-        if ('text' in msg[item]) {
-            updateText(item, msg[item]['text']);
+    $.each(msg, function (key, value) {
+        if ('text' in value) {
+            updateText(key, value['text']);
         }
-        if ('bg' in msg[item]) {
-            updateBG(item, msg[item]['bg']);
+        if ('bg' in value) {
+            updateBG(key, value['bg']);
         }
-        if ('display' in msg[item]) {
-            if (msg[item]['display'] === 'show') {
-                show(item)
+        if ('display' in value) {
+            if (value['display'] === 'show') {
+                show(key)
             } else {
-                hide(item)
+                hide(key)
             }
         }
-    }
+    });
 }
 
 function updateText(item, value) {
-    var curr_val = document.getElementById(item + "-text").innerHTML;
+    var updateItem = $("#" + item + "-text");
 
-    if (curr_val.trim() !== value.trim()) {
-        document.getElementById(item + "-text").classList.add("fade-out");
-
+    if ($.trim(updateItem.html()) !== $.trim(value)) {
+        updateItem.addClass("fade-out");
 
         setTimeout(function () {
-            document.getElementById(item + "-text").classList.remove("fade-out");
+            updateItem.removeClass("fade-out");
 
-            document.getElementById(item + "-text").innerHTML = value;
+            updateItem.html(value);
 
-            document.getElementById(item + "-text").classList.add("fade-in");
+            updateItem.addClass("fade-in");
 
             setTimeout(function () {
-                document.getElementById(item + "-text").classList.remove("fade-in");
+                updateItem.removeClass("fade-in");
             }, 1000);
         }, 1000);
     }
 }
 
 function updateBG(item, value) {
-    var curr_val = document.getElementById(item + "-bg").classList;
+    var updateItem = $("#" + item + "-bg");
 
-    if (!curr_val.contains(value)) {
-        document.getElementById(item + "-bg").className = value;
+    if (!updateItem.hasClass(value)) {
+        updateItem.removeClass();
+        updateItem.addClass(value);
     }
 }
 
 function hide(item) {
-    var curr_val = document.getElementById(item).classList;
+    var updateItem = $("#" + item);
 
-    if (!curr_val.contains('hide')) {
-        document.getElementById(item).classList.add("fade-out");
+    if (!updateItem.hasClass('hide')) {
+        updateItem.addClass("fade-out");
 
         setTimeout(function () {
-            document.getElementById(item).classList.remove("show");
-            document.getElementById(item).classList.add("hide");
-            document.getElementById(item).classList.remove("fade-out");
+            updateItem.removeClass("show");
+            updateItem.addClass("hide");
+            updateItem.removeClass("fade-out");
         }, 1000);
     }
 }
 
 function show(item) {
-    var curr_val = document.getElementById(item).classList;
+    var updateItem = $("#" + item);
 
-    if (!curr_val.contains('show')) {
-        document.getElementById(item).classList.add("fade-in");
+    if (!updateItem.hasClass('show')) {
+        updateItem.addClass("fade-in");
 
         setTimeout(function () {
-            document.getElementById(item).classList.remove("hide");
-            document.getElementById(item).classList.add("show");
-            document.getElementById(item).classList.remove("fade-in");
+            updateItem.removeClass("hide");
+            updateItem.addClass("show");
+            updateItem.removeClass("fade-in");
         }, 1000);
     }
 }

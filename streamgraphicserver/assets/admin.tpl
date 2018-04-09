@@ -11,9 +11,8 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
@@ -53,47 +52,70 @@
 </nav>
 
 <div class="container">
-    % for item in overlay:
     <form class="form-inline" action="#">
-        <div class="form-group mb-2">
-            <label for="{{item}}-name-form" class="sr-only">{{item}}</label>
-            <input type="text" readonly class="form-control-plaintext" id="{{item}}-name-form"
-                   value="{{item}}">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Text</th>
+                    <th scope="col">Background</th>
+                    <th scope="col">Display</th>
+                    <th scope="col">Submit</th>
+                </tr>
+                </thead>
+                <tbody>
+                % for item in overlay:
+                <tr>
+                    <td class="align-middle">
+                        {{item}}
+                    </td>
+                    <td class="align-middle">
+                        % if 'text' in overlay[item]:
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="{{item}}-text-form" class="sr-only">{{item}} - Text</label>
+                            <input type="text" class="form-control" id="{{item}}-text-form"
+                                   value="{{overlay[item]['text']}}">
+                        </div>
+                        % end
+                    </td>
+                    <td class="align-middle">
+                        % if 'bg' in overlay[item]:
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="{{item}}-bg-form" class="sr-only">{{item}} - Background</label>
+                            <select class="form-control" id="{{item}}-bg-form">
+                                % for color in colors:
+                                % if color == overlay[item]['bg']:
+                                <option selected>{{color}}</option>
+                                % else:
+                                <option>{{color}}</option>
+                                % end
+                                % end
+                            </select>
+                        </div>
+                        % end
+                    </td>
+                    <td class="align-middle">
+                        % if 'display' in overlay[item]:
+                        <div class="custom-control custom-checkbox mx-sm-3 mb-2">
+                            % if 'show' in overlay[item]['display']:
+                            <input type="checkbox" class="custom-control-input" id="{{item}}-display-form" checked>
+                            % else:
+                            <input type="checkbox" class="custom-control-input" id="{{item}}-display-form">
+                            % end
+                            <label class="custom-control-label" for="{{item}}-display-form">Show</label>
+                        </div>
+                        % end
+                    </td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-primary mx-sm-3 mb-2" onclick="update('{{item}}')">Update
+                        </button>
+                    </td>
+                    % end
+                </tbody>
+            </table>
         </div>
-        % if 'text' in overlay[item]:
-        <div class="form-group mx-sm-3 mb-2">
-            <label for="{{item}}-text-form" class="sr-only">{{item}} - Text</label>
-            <input type="text" class="form-control" id="{{item}}-text-form"
-                   value="{{overlay[item]['text']}}">
-        </div>
-        % end
-        % if 'bg' in overlay[item]:
-        <div class="form-group mx-sm-3 mb-2">
-            <label for="{{item}}-bg-form" class="sr-only">{{item}} - Background</label>
-            <select class="form-control" id="{{item}}-bg-form">
-                % for color in colors:
-                % if color == overlay[item]['bg']:
-                <option selected>{{color}}</option>
-                % else:
-                <option>{{color}}</option>
-                % end
-                % end
-            </select>
-        </div>
-        % end
-        % if 'display' in overlay[item]:
-        <div class="custom-control custom-checkbox mx-sm-3 mb-2">
-            % if 'show' in overlay[item]['display']:
-            <input type="checkbox" class="custom-control-input" id="{{item}}-display-form" checked>
-            % else:
-            <input type="checkbox" class="custom-control-input" id="{{item}}-display-form">
-            % end
-            <label class="custom-control-label" for="{{item}}-display-form">Show</label>
-        </div>
-        % end
-        <button type="submit" class="btn btn-primary mx-sm-3 mb-2" onclick="update('{{item}}')">Update</button>
     </form>
-    % end
 </div>
 
 

@@ -1,4 +1,3 @@
-function updateTime() {
-    document.getElementById("time-text")['innerHTML'] = moment().format("hh:mm:ss A");
-}
-setInterval(updateTime, 1000);
+setInterval(function () {
+    $("#time-text").html(moment().format("hh:mm:ss A"));
+}, 1000);

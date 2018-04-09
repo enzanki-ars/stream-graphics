@@ -17,6 +17,9 @@
 
     <link rel="stylesheet" type="text/css" href="assets/css/all.css">
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"
             integrity="sha256-Thm9kMI2BQKxVnCWipQIGeb8QVl2lohO+WWWfCiF8b0=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment.min.js"
@@ -155,7 +158,6 @@
                     {{ overlay['name']['text'] }}
                 </text>
             </g>
-
             <g id="bottom-bar" class="{{ overlay['bottom-bar']['display'] }}" transform="translate(256,1008)">
                 <rect id="bottom-bar-bg" class="{{ overlay['bottom-bar']['bg'] }}" width="1408" height="48"></rect>
                 <text id="bottom-bar-text" x="699.5" y="24" class="white-text text-center">
