@@ -95,7 +95,12 @@ function updateBG(item, value) {
     var updateItem = $("#" + item + "-bg");
 
     if (!updateItem.hasClass(value)) {
-        updateItem.removeClass();
+        $.each(updateItem.attr('class').split(' '), function (index, value) {
+            if (value.match(/.*-bg$/g) != null) {
+                updateItem.removeClass(value);
+            }
+        });
+
         updateItem.addClass(value);
     }
 }

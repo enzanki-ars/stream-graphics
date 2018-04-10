@@ -19,22 +19,28 @@ $fills: ('black': rgb(0, 0, 0),
         'grey': rgb(128, 128, 128),
         'white': rgb(255, 255, 255));
 
+@for $i from 0 through 24 {
+  @for $j from 0 through 24 {
+    .pos-x-#{$i}-y-#{$j} {
+      transform: translate(calc((100vw / 24) * #{$i}), calc((100vh / 24) * #{$j}));
+    }
+
+    .w-#{$i}-h-#{$j} {
+      width: calc((100vw / 24) * #{$i});
+      height: calc((100vh / 24) * #{$j});
+    }
+
+    .text-w-#{$i}-h-#{$j} {
+      transform: translate(calc(((100vw / 24) * #{$i}) / 2), calc(((100vh / 24) * #{$j}) / 2));
+    }
+  }
+}
+
 .text {
-  font-size: 32px;
+  font-size: calc((100vh / 24) - 1vh);
   font-family: 'Open Sans', sans-serif;
   alignment-baseline: middle;
-}
-
-.text-center {
-  text-anchor: start;
-}
-
-.text-center {
   text-anchor: middle;
-}
-
-.text-right {
-  text-anchor: end;
 }
 
 .text-bold {
