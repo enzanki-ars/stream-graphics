@@ -1,6 +1,6 @@
 # enzanki_ars's Stream Graphics (v4)
 
-_v4.0.1_
+_v4.0.2_
 
 ## Known issues
 
@@ -10,6 +10,7 @@ _v4.0.1_
 
 - Add a "Update all" button.
 - Add preview on admin page.
+- Save current graphic configuration in case of server resets.
 
 ## Demo
 
