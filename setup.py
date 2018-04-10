@@ -5,7 +5,7 @@ from distutils.core import setup
 
 setup(
     name='stream-graphics',
-    version='4.0.0',
+    version='4.0.1',
     url='https://enzanki-ars.github.io/stream-graphics',
     license='GNU AGPLv3',
     author='Alex Shafer',
