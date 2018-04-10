@@ -1,4 +1,7 @@
 import os
+from pathlib import Path
+
+curr_overlay_extra = {}
 
 
 def get_assets_path():
@@ -38,3 +41,31 @@ def get_overlay_defaults():
         defaults = json.load(overlay)
 
     return defaults
+
+
+def load_overlay_save():
+    global curr_overlay_extra
+
+    import json
+
+    if os.path.exists('overlay-save.json'):
+        with open('overlay-save.json') as overlay:
+            curr_overlay_extra = json.load(overlay)
+
+    return curr_overlay_extra
+
+
+def save_overlay():
+    global curr_overlay_extra
+
+    import json
+
+    Path('overlay-save.json').touch()
+    with open('overlay-save.json', 'w') as overlay:
+        json.dump(curr_overlay_extra, fp=overlay)
+
+    return curr_overlay_extra
+
+
+def get_overlay():
+    return merge_dicts(get_overlay_defaults(), load_overlay_save())

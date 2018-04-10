@@ -1,6 +1,7 @@
 from gevent import monkey
 
-from streamgraphicserver.util import get_assets_path, get_overlay_defaults, merge_dicts
+from streamgraphicserver.util import get_assets_path, get_overlay_defaults, merge_dicts, get_overlay, load_overlay_save, \
+    save_overlay
 
 monkey.patch_all()
 
@@ -21,8 +22,6 @@ sio = socketio.Server(async_mode='gevent')
 socket_app = socketio.Middleware(sio, bottle.app())
 
 bottle.TEMPLATE_PATH.insert(0, get_assets_path())
-
-curr_overlay_info = {}
 
 colors = ['black-bg',
           'red-bg',
@@ -51,15 +50,12 @@ def serve_overlay():
 
 @bottle.route('/admin')
 def serve_overlay():
-    return template('admin', overlay=merge_dicts(get_overlay_defaults(), curr_overlay_info), colors=colors)
+    return template('admin', overlay=get_overlay(), colors=colors)
 
 
 @bottle.route('/overlay')
 def serve_overlay():
-    try:
-        return template('overlay', overlay=merge_dicts(get_overlay_defaults(), curr_overlay_info))
-    except:
-        print(curr_overlay_info)
+    return template('overlay', overlay=get_overlay())
 
 
 @bottle.route('/background')
@@ -80,47 +76,55 @@ def serve_assets_js(filename):
 @sio.on('connect', namespace='/websocket')
 def sio_connect(sid, environ):
     logger.info('connect: ' + sid)
-    sio.emit('online', merge_dicts(get_overlay_defaults(), curr_overlay_info), namespace='/websocket')
+    sio.emit('online', get_overlay(), namespace='/websocket')
 
 
 @sio.on('set text', namespace='/websocket')
 def sio_graphics_event(sid, data):
     logger.info('text update event: ' + str(data))
-    if data['item'] in curr_overlay_info:
-        curr_overlay_info[data['item']]['text'] = data['value']
+    if data['item'] in load_overlay_save():
+        load_overlay_save()[data['item']]['text'] = data['value']
     else:
-        curr_overlay_info[data['item']] = {'text': data['value']}
+        load_overlay_save()[data['item']] = {'text': data['value']}
     sio.emit('change text', data, namespace='/websocket')
+
+    save_overlay()
 
 
 @sio.on('set bg', namespace='/websocket')
 def sio_bg_event(sid, data):
     logger.info('bg update event: ' + str(data))
-    if data['item'] in curr_overlay_info:
-        curr_overlay_info[data['item']]['bg'] = data['value']
+    if data['item'] in load_overlay_save():
+        load_overlay_save()[data['item']]['bg'] = data['value']
     else:
-        curr_overlay_info[data['item']] = {'bg': data['value']}
+        load_overlay_save()[data['item']] = {'bg': data['value']}
     sio.emit('change bg', data, namespace='/websocket')
+
+    save_overlay()
 
 
 @sio.on('show', namespace='/websocket')
 def sio_show_event(sid, data):
     logger.info('show event: ' + str(data))
-    if data['item'] in curr_overlay_info:
-        curr_overlay_info[data['item']]['display'] = 'show'
+    if data['item'] in load_overlay_save():
+        load_overlay_save()[data['item']]['display'] = 'show'
     else:
-        curr_overlay_info[data['item']] = {'display': 'show'}
+        load_overlay_save()[data['item']] = {'display': 'show'}
     sio.emit('change show', data, namespace='/websocket')
+
+    save_overlay()
 
 
 @sio.on('hide', namespace='/websocket')
 def sio_hid_event(sid, data):
     logger.info('hide event: ' + str(data))
-    if data['item'] in curr_overlay_info:
-        curr_overlay_info[data['item']]['display'] = 'hide'
+    if data['item'] in load_overlay_save():
+        load_overlay_save()[data['item']]['display'] = 'hide'
     else:
-        curr_overlay_info[data['item']] = {'display': 'hide'}
+        load_overlay_save()[data['item']] = {'display': 'hide'}
     sio.emit('change hide', data, namespace='/websocket')
+
+    save_overlay()
 
 
 @sio.on('disconnect', namespace='/websocket')
