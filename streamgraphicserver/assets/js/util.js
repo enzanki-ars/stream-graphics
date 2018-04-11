@@ -1,3 +1,3 @@
 setInterval(function () {
-    $("#time-text").html(moment().format("hh:mm:ss A"));
+    $("#time").text(moment().format("hh:mm:ss A"));
 }, 1000);

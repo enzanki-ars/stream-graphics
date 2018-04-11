@@ -24,18 +24,15 @@ $fills: ('black': rgb(0, 0, 0),
 @for $i from 0 through 24 {
   @for $j from 0 through 24 {
     .pos-x-#{$i}-y-#{$j} {
-      transform: translate(calc((100vw / #{$column-horizontal}) * #{$i}),
-              calc((100vh / #{$column-vertical}) * #{$j}));
+      position: absolute;
+      left: calc((100vw / #{$column-horizontal}) * #{$i});
+      top: calc((100vh / #{$column-vertical}) * #{$j});
     }
 
     .w-#{$i}-h-#{$j} {
+      line-height: calc((100vh / #{$column-vertical}) * #{$j});
       width: calc((100vw / #{$column-horizontal}) * #{$i});
       height: calc((100vh / #{$column-vertical}) * #{$j});
-    }
-
-    .text-w-#{$i}-h-#{$j} {
-      transform: translate(calc(((100vw / #{$column-horizontal}) * #{$i}) / 2),
-              calc(((100vh / #{$column-vertical}) * #{$j}) / 2));
     }
   }
 }
@@ -45,6 +42,11 @@ $fills: ('black': rgb(0, 0, 0),
   font-family: 'Open Sans', sans-serif;
   alignment-baseline: middle;
   text-anchor: middle;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 
 .text-bold {
@@ -106,10 +108,10 @@ $fills: ('black': rgb(0, 0, 0),
 
     @keyframes #{$name}-blink-#{$name2} {
       0% {
-        fill: #{$color};
+        background-color: #{$color};
       }
       100% {
-        fill: #{$color2};
+        background-color: #{$color2};
       }
     }
 
@@ -133,11 +135,11 @@ $fills: ('black': rgb(0, 0, 0),
   }
 
   .#{$name}-bg {
-    fill: #{$color};
+    background-color: #{$color};
   }
 
   .#{$name}-text {
-    fill: #{$color};
+    color: #{$color};
     @extend .text;
   }
 }

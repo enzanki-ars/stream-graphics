@@ -72,15 +72,15 @@ function updateAll(msg) {
 }
 
 function updateText(item, value) {
-    var updateItem = $("#" + item + "-text");
+    var updateItem = $("#" + item);
 
-    if ($.trim(updateItem.html()) !== $.trim(value)) {
+    if ($.trim(updateItem.text()) !== $.trim(value)) {
         updateItem.addClass("fade-out");
 
         setTimeout(function () {
             updateItem.removeClass("fade-out");
 
-            updateItem.html(value);
+            updateItem.text(value);
 
             updateItem.addClass("fade-in");
 
@@ -92,7 +92,7 @@ function updateText(item, value) {
 }
 
 function updateBG(item, value) {
-    var updateItem = $("#" + item + "-bg");
+    var updateItem = $("#" + item);
     var oldValue;
 
     if (!updateItem.hasClass(value)) {
