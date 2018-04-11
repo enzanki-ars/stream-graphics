@@ -75,6 +75,10 @@ function updateAll(msg) {
     });
 }
 
+function submitAll() {
+    $("#form button, input[type='button']").click()
+}
+
 function updateText(item, value) {
     var updateItem = $('#' + item + '-text-form');
 

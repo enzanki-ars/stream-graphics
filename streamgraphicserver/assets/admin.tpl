@@ -34,7 +34,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
@@ -48,11 +48,14 @@
                 <a class="nav-link" href="/overlay">Overlay</a>
             </li>
         </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="submitAll()">Submit All</button>
+        </form>
     </div>
 </nav>
 
 <div class="container">
-    <form class="form-inline" action="#">
+    <form class="form-inline" id="form" action="#">
         <div class="table-responsive">
             <table class="table">
                 <thead>
