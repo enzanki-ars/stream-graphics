@@ -21,6 +21,10 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+            integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+            crossorigin="anonymous"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"
             integrity="sha256-Thm9kMI2BQKxVnCWipQIGeb8QVl2lohO+WWWfCiF8b0=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment.min.js"
@@ -29,142 +33,106 @@
     <script src="assets/js/util.js"></script>
 </head>
 <body>
-<svg height="100%" width="100%">
-    <g id="overlay" class="{{ overlay['overlay']['display'] }}">
-        <g id="top" class="{{ overlay['top']['display'] }}">
-            <g id="top-title" class="{{ overlay['top-title']['display'] }} pos-x-1-y-1">
-                <rect id="top-title-bg" class="{{ overlay['top-title']['bg'] }} w-3-h-1"></rect>
-                <text id="top-title-text" class="white-text text-bold text-w-3-h-1">
-                    {{ overlay['top-title']['text'] }}
-                </text>
-            </g>
-            <g id="top-info" class="{{ overlay['source']['display'] }} pos-x-4-y-1">
-                <rect id="top-info-bg" class="{{ overlay['top-info']['bg'] }} w-4-h-1"></rect>
-                <text id="top-info-text" class="white-text text-w-4-h-1">
-                    {{ overlay['top-info']['text'] }}
-                </text>
-            </g>
+<div id="overlay" class="{{ overlay['overlay']['display'] }}">
+    <div id="top" class="{{ overlay['top']['display'] }}">
+        <div id="top-title"
+             class="{{ overlay['top-title']['display'] }} {{ overlay['top-title']['bg'] }} pos-x-1-y-1 white-text text-bold w-3-h-1">
+            {{ overlay['top-title']['text'] }}
+        </div>
+        <div id="top-info"
+             class="{{ overlay['source']['display'] }} {{ overlay['top-info']['bg'] }} pos-x-4-y-1 white-text w-4-h-1">
+            {{ overlay['top-info']['text'] }}
+        </div>
 
-            <g id="source" class="{{ overlay['source']['display'] }} pos-x-16-y-1">
-                <rect id="source-bg" class="{{ overlay['source']['bg'] }} w-4-h-1"></rect>
-                <text id="source-text" class="white-text text-w-4-h-1">
-                    {{ overlay['source']['text'] }}
-                </text>
-            </g>
+        <div id="source"
+             class="{{ overlay['source']['display'] }} {{ overlay['source']['bg'] }} pos-x-16-y-1 white-text w-4-h-1">
+            {{ overlay['source']['text'] }}
+        </div>
 
-            <g id="status" class="{{ overlay['status']['display'] }} pos-x-20-y-1">
-                <rect id="status-bg" class="{{ overlay['status']['bg'] }} w-3-h-1"></rect>
-                <text id="status-text" class="white-text text-bold text-w-3-h-1">
-                    {{ overlay['status']['text'] }}
-                </text>
-            </g>
-        </g>
+        <div id="status"
+             class="{{ overlay['status']['display'] }} {{ overlay['status']['bg'] }} pos-x-20-y-1 white-text text-bold w-3-h-1">
+            {{ overlay['status']['text'] }}
+        </div>
+    </div>
 
-        <g id="scoreboard" class="{{ overlay['scoreboard']['display'] }}">
-            <g id="team1" class="{{ overlay['team1']['display'] }}">
-                <g id="team1-name" class="{{ overlay['team1-name']['display'] }} pos-x-1-y-2">
-                    <rect id="team1-name-bg" class="{{ overlay['team1-name']['bg'] }} w-4-h-1"></rect>
-                    <text id="team1-name-text" class="white-text text-bold text-w-4-h-1">
-                        {{ overlay['team1-name']['text'] }}
-                    </text>
-                </g>
+    <div id="scoreboard" class="{{ overlay['scoreboard']['display'] }}">
+        <div id="team1" class="{{ overlay['team1']['display'] }}">
+            <div id="team1-name"
+                 class="{{ overlay['team1-name']['display'] }} {{ overlay['team1-name']['bg'] }} pos-x-1-y-2 white-text text-bold w-4-h-1">
+                {{ overlay['team1-name']['text'] }}
+            </div>
 
-                <g id="team1-score" class="{{ overlay['team1-score']['display'] }} pos-x-5-y-2">
-                    <rect id="team1-score-bg" class="{{ overlay['team1-score']['bg'] }} w-1-h-1"></rect>
-                    <text id="team1-score-text" class="white-text text-bold text-w-1-h-1">
-                        {{ overlay['team1-score']['text'] }}
-                    </text>
-                </g>
-            </g>
+            <div id="team1-score"
+                 class="{{ overlay['team1-score']['display'] }} {{ overlay['team1-score']['bg'] }} pos-x-5-y-2 white-text text-bold w-1-h-1">
+                {{ overlay['team1-score']['text'] }}
+            </div>
+        </div>
 
-            <g id="team2" class="{{ overlay['team2']['display'] }}">
-                <g id="team2-name" class="{{ overlay['team2-name']['display'] }} pos-x-1-y-3">
-                    <rect id="team2-name-bg" class="{{ overlay['team2-name']['bg'] }} w-4-h-1"></rect>
-                    <text id="team2-name-text" class="white-text text-bold text-w-4-h-1">
-                        {{ overlay['team2-name']['text'] }}
-                    </text>
-                </g>
+        <div id="team2" class="{{ overlay['team2']['display'] }}">
+            <div id="team2-name"
+                 class="{{ overlay['team2-name']['display'] }} {{ overlay['team2-name']['bg'] }} pos-x-1-y-3 white-text text-bold w-4-h-1">
+                {{ overlay['team2-name']['text'] }}
+            </div>
 
-                <g id="team2-score" class="{{ overlay['team2-score']['display'] }} pos-x-5-y-3">
-                    <rect id="team2-score-bg" class="{{ overlay['team2-score']['bg'] }} w-1-h-1"></rect>
-                    <text id="team2-score-text" class="white-text text-bold text-w-1-h-1">
-                        {{ overlay['team2-score']['text'] }}
-                    </text>
-                </g>
-            </g>
-        </g>
+            <div id="team2-score"
+                 class="{{ overlay['team2-score']['display'] }} {{ overlay['team2-score']['bg'] }} pos-x-5-y-3 white-text text-bold w-1-h-1">
+                {{ overlay['team2-score']['text'] }}
+            </div>
+        </div>
+    </div>
 
-        <g id="info" class="{{ overlay['info']['display'] }}">
-            <g id="left-info" class="{{ overlay['left-info']['display'] }}">
-                <g id="left-info-top" class="{{ overlay['left-info-top']['display'] }} pos-x-1-y-20">
-                    <rect id="left-info-top-bg" class="{{ overlay['left-info-top']['bg'] }} w-6-h-1"></rect>
-                    <text id="left-info-top-text" class="white-text text-bold text-w-6-h-1">
-                        {{ overlay['left-info-top']['text'] }}
-                    </text>
-                </g>
-                <g id="left-info-bottom" class="{{ overlay['left-info-bottom']['display'] }} pos-x-1-y-21">
-                    <rect id="left-info-bottom-bg" class="{{ overlay['left-info-bottom']['bg'] }} w-6-h-1"></rect>
-                    <text id="left-info-bottom-text" class="white-text text-w-6-h-1">
-                        {{ overlay['left-info-bottom']['text'] }}
-                    </text>
-                </g>
-            </g>
+    <div id="info" class="{{ overlay['info']['display'] }}">
+        <div id="left-info" class="{{ overlay['left-info']['display'] }}">
+            <div id="left-info-top"
+                 class="{{ overlay['left-info-top']['display'] }} {{ overlay['left-info-top']['bg'] }} pos-x-1-y-20 white-text text-bold w-6-h-1">
+                {{ overlay['left-info-top']['text'] }}
+            </div>
+            <div id="left-info-bottom"
+                 class="{{ overlay['left-info-bottom']['display'] }} {{ overlay['left-info-bottom']['bg'] }} pos-x-1-y-21 white-text w-6-h-1">
+                {{ overlay['left-info-bottom']['text'] }}
+            </div>
+        </div>
 
-            <g id="center-info" class="{{ overlay['center-info']['display'] }}">
-                <g id="center-info-top" class="{{ overlay['center-info-top']['display'] }} pos-x-7-y-20">
-                    <rect id="center-info-top-bg" class="{{ overlay['center-info-top']['bg'] }} w-10-h-1"></rect>
-                    <text id="center-info-top-text" class="white-text text-bold text-w-10-h-1">
-                        {{ overlay['center-info-top']['text'] }}
-                    </text>
-                </g>
-                <g id="center-info-bottom" class="{{ overlay['center-info-bottom']['display'] }} pos-x-7-y-21">
-                    <rect id="center-info-bottom-bg" class="{{ overlay['center-info-bottom']['bg'] }} w-10-h-1"></rect>
-                    <text id="center-info-bottom-text" class="white-text text-w-10-h-1">
-                        {{ overlay['center-info-bottom']['text'] }}
-                    </text>
-                </g>
-            </g>
+        <div id="center-info" class="{{ overlay['center-info']['display'] }}">
+            <div id="center-info-top"
+                 class="{{ overlay['center-info-top']['display'] }} {{ overlay['center-info-top']['bg'] }} pos-x-7-y-20 white-text text-bold w-10-h-1">
+                {{ overlay['center-info-top']['text'] }}
+            </div>
+            <div id="center-info-bottom"
+                 class="{{ overlay['center-info-bottom']['display'] }} {{ overlay['center-info-bottom']['bg'] }} pos-x-7-y-21 white-text w-10-h-1">
+                {{ overlay['center-info-bottom']['text'] }}
+            </div>
+        </div>
 
-            <g id="right-info" class="{{ overlay['right-info']['display'] }}">
-                <g id="right-info-top" class="{{ overlay['right-info-top']['display'] }} pos-x-17-y-20">
-                    <rect id="right-info-top-bg" class="{{ overlay['right-info-top']['bg'] }} w-6-h-1"></rect>
-                    <text id="right-info-top-text" class="white-text text-bold text-w-6-h-1">
-                        {{ overlay['right-info-top']['text'] }}
-                    </text>
-                </g>
-                <g id="right-info-bottom" class="{{ overlay['right-info-bottom']['display'] }} pos-x-17-y-21">
-                    <rect id="right-info-bottom-bg" class="{{ overlay['right-info-bottom']['bg'] }} w-6-h-1"></rect>
-                    <text id="right-info-bottom-text" class="white-text text-w-6-h-1">
-                        {{ overlay['right-info-bottom']['text'] }}
-                    </text>
-                </g>
-            </g>
-        </g>
+        <div id="right-info" class="{{ overlay['right-info']['display'] }}">
+            <div id="right-info-top"
+                 class="{{ overlay['right-info-top']['display'] }} {{ overlay['right-info-top']['bg'] }} pos-x-17-y-20 white-text text-bold w-6-h-1">
+                {{ overlay['right-info-top']['text'] }}
+            </div>
+            <div id="right-info-bottom"
+                 class="{{ overlay['right-info-bottom']['display'] }} {{ overlay['right-info-bottom']['bg'] }} pos-x-17-y-21 white-text w-6-h-1">
+                {{ overlay['right-info-bottom']['text'] }}
+            </div>
+        </div>
+    </div>
 
-        <g id="bottom" class="{{ overlay['bottom']['display'] }}">
-            <g id="name" class="{{ overlay['name']['display'] }} pos-x-1-y-22">
-                <rect id="name-bg" class="{{ overlay['name']['bg'] }} w-3-h-1"></rect>
-                <text id="name-text" class="white-text text-bold text-w-3-h-1">
-                    {{ overlay['name']['text'] }}
-                </text>
-            </g>
-            <g id="bottom-bar" class="{{ overlay['bottom-bar']['display'] }} pos-x-4-y-22">
-                <rect id="bottom-bar-bg" class="{{ overlay['bottom-bar']['bg'] }} w-16-h-1"></rect>
-                <text id="bottom-bar-text" class="white-text  text-w-16-h-1">
-                    {{ overlay['bottom-bar']['text'] }}
-                </text>
-            </g>
+    <div id="bottom" class="{{ overlay['bottom']['display'] }}">
+        <div id="name"
+             class="{{ overlay['name']['display'] }} {{ overlay['name']['bg'] }} pos-x-1-y-22 white-text text-bold w-3-h-1">
+            {{ overlay['name']['text'] }}
+        </div>
+        <div id="bottom-bar"
+             class="{{ overlay['bottom-bar']['display'] }} {{ overlay['bottom-bar']['bg'] }} pos-x-4-y-22 white-text w-16-h-1">
+            {{ overlay['bottom-bar']['text'] }}
+        </div>
 
-            <g id="time" class="{{ overlay['time']['display'] }} pos-x-20-y-22">
-                <rect id="time-bg" class="{{ overlay['time']['bg'] }} w-3-h-1"></rect>
-                <text id="time-text" class="white-text text-bold text-w-3-h-1">
-                    % from time import strftime
-                    {{ strftime('%I:%M:%S %p') }}
-                </text>
-            </g>
-        </g>
-    </g>
-</svg>
+        <div id="time"
+             class="{{ overlay['time']['display'] }} {{ overlay['time']['bg'] }} pos-x-20-y-22 white-text text-bold w-3-h-1">
+            % from time import strftime
+            {{ strftime('%I:%M:%S %p') }}
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

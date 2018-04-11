@@ -10,17 +10,18 @@
         html, body {
             margin: 0;
             padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
     </style>
 
     <link rel="stylesheet" type="text/css" href="assets/css/all.css">
 </head>
 <body>
-<svg width="1920px" height="1080px">
-    <g id="background">
-        <rect width="1920" height="1080" class="white-bg"></rect>
-    </g>
-</svg>
+<div id="background" class="white-bg w-24-h-24">
+
+</div>
 
 </body>
 </html>
