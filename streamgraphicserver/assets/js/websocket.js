@@ -93,15 +93,22 @@ function updateText(item, value) {
 
 function updateBG(item, value) {
     var updateItem = $("#" + item + "-bg");
+    var oldValue;
 
     if (!updateItem.hasClass(value)) {
-        $.each(updateItem.attr('class').split(' '), function (index, value) {
-            if (value.match(/.*-bg$/g) != null) {
-                updateItem.removeClass(value);
+        $.each(updateItem.attr('class').split(' '), function (index, currClass) {
+            if (currClass.match(/.*-bg$/g) != null) {
+                oldValue = currClass;
             }
         });
 
-        updateItem.addClass(value);
+        updateItem.removeClass(oldValue);
+        updateItem.addClass(oldValue + '-to-' + value);
+        setTimeout(function () {
+            updateItem.removeClass(oldValue + '-to-' + value);
+            updateItem.addClass(value);
+        }, 1000);
+
     }
 }
 

@@ -1,43 +1,47 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
+$column-horizontal: 24;
+$column-vertical: 24;
+
 $fills: ('black': rgb(0, 0, 0),
-        'red': rgb(128, 0, 0),
-        'green': rgb(0, 128, 0),
-        'blue': rgb(0, 0, 128),
-        'dark-red': rgb(64, 0, 0),
-        'dark-green': rgb(0, 64, 0),
-        'dark-blue': rgb(0, 0, 64),
-        'cyan': rgb(0, 128, 128),
-        'magenta': rgb(128, 0, 128),
-        'yellow': rgb(128, 128, 0),
-        'pink': rgb(255, 0, 128),
-        'orange': rgb(255, 128, 0),
-        'yellow-green': rgb(128, 255, 0),
-        'blue-green': rgb(0, 255, 128),
-        'light-blue': rgb(0, 128, 255),
-        'violet': rgb(128, 0, 255),
+        'red': rgb(192, 0, 0),
+        'green': rgb(0, 192, 0),
+        'blue': rgb(0, 0, 192),
+        'cyan': rgb(0, 192, 192),
+        'magenta': rgb(192, 0, 192),
+        'yellow': rgb(192, 192, 0),
+        'pink': rgb(192, 0, 96),
+        'orange': rgb(192, 96, 0),
+        'yellow-green': rgb(96, 192, 0),
+        'blue-green': rgb(0, 192, 96),
+        'light-blue': rgb(0, 96, 192),
+        'violet': rgb(96, 0, 192),
+        'dark-grey': rgb(64, 64, 64),
         'grey': rgb(128, 128, 128),
+        'light-grey': rgb(192, 192, 192),
         'white': rgb(255, 255, 255));
 
 @for $i from 0 through 24 {
   @for $j from 0 through 24 {
     .pos-x-#{$i}-y-#{$j} {
-      transform: translate(calc((100vw / 24) * #{$i}), calc((100vh / 24) * #{$j}));
+      transform: translate(calc((100vw / #{$column-horizontal}) * #{$i}),
+              calc((100vh / #{$column-vertical}) * #{$j}));
     }
 
     .w-#{$i}-h-#{$j} {
-      width: calc((100vw / 24) * #{$i});
-      height: calc((100vh / 24) * #{$j});
+      width: calc((100vw / #{$column-horizontal}) * #{$i});
+      height: calc((100vh / #{$column-vertical}) * #{$j});
     }
 
     .text-w-#{$i}-h-#{$j} {
-      transform: translate(calc(((100vw / 24) * #{$i}) / 2), calc(((100vh / 24) * #{$j}) / 2));
+      transform: translate(calc(((100vw / #{$column-horizontal}) * #{$i}) / 2),
+              calc(((100vh / #{$column-vertical}) * #{$j}) / 2));
     }
   }
 }
 
 .text {
-  font-size: calc((100vh / 24) - 1vh);
+  font-size: calc((100vmin / 24) - 1vmin);
   font-family: 'Open Sans', sans-serif;
   alignment-baseline: middle;
   text-anchor: middle;
@@ -114,6 +118,12 @@ $fills: ('black': rgb(0, 0, 0),
       @extend .blink-animation;
       @extend .#{$name}-bg;
     }
+
+    .#{$name}-bg-to-#{$name2}-bg {
+      animation-name: #{$name}-blink-#{$name2};
+      @extend .fade-animation;
+      @extend .#{$name}-bg;
+    }
   }
 
   .status-#{$name} {
@@ -124,7 +134,6 @@ $fills: ('black': rgb(0, 0, 0),
 
   .#{$name}-bg {
     fill: #{$color};
-    opacity: 0.7;
   }
 
   .#{$name}-text {

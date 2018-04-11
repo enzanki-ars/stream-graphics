@@ -28,9 +28,6 @@ colors = ['black-bg',
           'red-bg',
           'green-bg',
           'blue-bg',
-          'dark-red-bg',
-          'dark-green-bg',
-          'dark-blue-bg',
           'cyan-bg',
           'magenta-bg',
           'yellow-bg',
@@ -40,7 +37,9 @@ colors = ['black-bg',
           'blue-green-bg',
           'light-blue-bg',
           'violet-bg',
+          'dark-grey-bg',
           'grey-bg',
+          'light-grey-bg',
           'white-bg']
 
 
@@ -56,10 +55,7 @@ def serve_overlay():
 
 @bottle.route('/overlay')
 def serve_overlay():
-    try:
-        return template('overlay', overlay=merge_dicts(get_overlay_defaults(), curr_overlay_info))
-    except:
-        print(curr_overlay_info)
+    return template('overlay', overlay=merge_dicts(get_overlay_defaults(), curr_overlay_info))
 
 
 @bottle.route('/background')

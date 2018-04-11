@@ -108,7 +108,7 @@
     "display": "show"
   },
   "bottom-bar": {
-    "text": "This will not scroll, but instead fade in and out on changes...",
+    "text": "Bottom bar.  Does not scroll.",
     "bg": "black-bg",
     "display": "hide"
   },
