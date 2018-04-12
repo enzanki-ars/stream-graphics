@@ -1,0 +1,170 @@
+---
+top-title:
+  text: Testing
+  bg: green-bg
+  display: hide
+  text-color: white
+  text-style: bold
+  x: 1
+  y: 1
+  w: 3
+  h: 1
+top-info:
+  text: Testing Graphics
+  bg: black-bg
+  display: hide
+  text-color: white
+  text-style: normal
+  x: 4
+  y: 1
+  w: 4
+  h: 1
+source:
+  text: Testing Graphics
+  bg: black-bg
+  display: hide
+  text-color: white
+  text-style: normal
+  x: 16
+  y: 1
+  w: 4
+  h: 1
+status:
+  text: LIVE
+  bg: red-bg
+  display: show
+  text-color: white
+  text-style: bold
+  x: 20
+  y: 1
+  w: 3
+  h: 1
+team1-name:
+  text: Team 1
+  bg: blue-bg
+  display: show
+  text-color: white
+  text-style: bold
+  x: 1
+  y: 2
+  w: 4
+  h: 1
+team1-score:
+  text: '0'
+  bg: black-bg
+  display: show
+  text-color: white
+  text-style: normal
+  x: 5
+  y: 2
+  w: 1
+  h: 1
+team2-name:
+  text: Team 2
+  bg: red-bg
+  display: show
+  text-color: white
+  text-style: bold
+  x: 1
+  y: 3
+  w: 4
+  h: 1
+team2-score:
+  text: '0'
+  bg: black-bg
+  display: show
+  text-color: white
+  text-style: normal
+  x: 5
+  y: 3
+  w: 1
+  h: 1
+left-info-top:
+  text: Left Side
+  bg: grey-bg
+  display: show
+  text-color: white
+  text-style: bold
+  x: 1
+  y: 20
+  w: 6
+  h: 1
+left-info-bottom:
+  text: Testing left side
+  bg: grey-bg
+  display: show
+  text-color: white
+  text-style: normal
+  x: 1
+  y: 21
+  w: 6
+  h: 1
+center-info-top:
+  text: Center
+  bg: grey-bg
+  display: show
+  text-color: white
+  text-style: bold
+  x: 7
+  y: 20
+  w: 10
+  h: 1
+center-info-bottom:
+  text: This text is in the center
+  bg: grey-bg
+  display: show
+  text-color: white
+  text-style: normal
+  x: 7
+  y: 21
+  w: 10
+  h: 1
+right-info-top:
+  text: Right Side
+  bg: grey-bg
+  display: show
+  text-color: white
+  text-style: bold
+  x: 17
+  y: 20
+  w: 6
+  h: 1
+right-info-bottom:
+  text: Testing right side
+  bg: grey-bg
+  display: show
+  text-color: white
+  text-style: normal
+  x: 17
+  y: 21
+  w: 6
+  h: 1
+name:
+  text: enzankiars
+  bg: black-bg
+  display: show
+  text-color: white
+  text-style: bold
+  x: 1
+  y: 22
+  w: 3
+  h: 1
+bottom-bar:
+  text: Bottom bar.  Does not scroll.
+  bg: black-bg
+  display: hide
+  text-color: white
+  text-style: bold
+  x: 4
+  y: 22
+  w: 16
+  h: 1
+time:
+  bg: black-bg
+  display: show
+  text-color: white
+  text-style: bold
+  x: 20
+  y: 22
+  w: 3
+  h: 1
