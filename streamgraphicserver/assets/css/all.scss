@@ -22,18 +22,21 @@ $fills: ('black': rgb(0, 0, 0),
         'white': rgb(255, 255, 255));
 
 @for $i from 0 through 24 {
-  @for $j from 0 through 24 {
-    .pos-x-#{$i}-y-#{$j} {
-      position: absolute;
-      left: calc((100vw / #{$column-horizontal}) * #{$i});
-      top: calc((100vh / #{$column-vertical}) * #{$j});
-    }
+  .x-#{$i} {
+    position: absolute;
+    left: calc((100vw / #{$column-horizontal}) * #{$i});
+  }
+  .y-#{$i} {
+    position: absolute;
+    top: calc((100vh / #{$column-vertical}) * #{$i});
+  }
 
-    .w-#{$i}-h-#{$j} {
-      line-height: calc((100vh / #{$column-vertical}) * #{$j});
-      width: calc((100vw / #{$column-horizontal}) * #{$i});
-      height: calc((100vh / #{$column-vertical}) * #{$j});
-    }
+  .w-#{$i} {
+    width: calc((100vw / #{$column-horizontal}) * #{$i});
+  }
+  .h-#{$i} {
+    line-height: calc((100vh / #{$column-vertical}) * #{$i});
+    height: calc((100vh / #{$column-vertical}) * #{$i});
   }
 }
 
@@ -47,6 +50,10 @@ $fills: ('black': rgb(0, 0, 0),
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: center;
+}
+
+.text-normal {
+  font-weight: normal;
 }
 
 .text-bold {

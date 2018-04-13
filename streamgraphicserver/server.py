@@ -1,6 +1,7 @@
 from gevent import monkey
 
-from streamgraphicserver.util import get_assets_path, get_overlay_defaults, merge_dicts
+from streamgraphicserver.util import get_assets_path, get_overlay_defaults, get_user_overlays, get_overlay, \
+    get_all_overlays, update_overlay, copy_default
 
 monkey.patch_all()
 
@@ -22,8 +23,6 @@ socket_app = socketio.Middleware(sio, bottle.app())
 
 bottle.TEMPLATE_PATH.insert(0, get_assets_path())
 
-curr_overlay_info = {}
-
 colors = ['black-bg',
           'red-bg',
           'green-bg',
@@ -44,18 +43,39 @@ colors = ['black-bg',
 
 
 @bottle.route('/')
-def serve_overlay():
-    return template('index')
+def serve_index():
+    return template('index', default_overlays=get_overlay_defaults(), user_overlays=get_user_overlays())
 
 
-@bottle.route('/admin')
-def serve_overlay():
-    return template('admin', overlay=merge_dicts(get_overlay_defaults(), curr_overlay_info), colors=colors)
+@bottle.route('/copy-default-overlay')
+def copy_default_overlay():
+    base_name = request.forms.get('base_name') or request.query.base_name
+    new_name = request.forms.get('new_name') or request.query.new_name
+
+    copy_default(base_name, new_name)
+
+    redirect("/overlay/" + new_name)
 
 
-@bottle.route('/overlay')
-def serve_overlay():
-    return template('overlay', overlay=merge_dicts(get_overlay_defaults(), curr_overlay_info))
+@bottle.route('/copy-default-admin')
+def copy_default_overlay():
+    base_name = request.forms.get('base_name') or request.query.base_name
+    new_name = request.forms.get('new_name') or request.query.new_name
+
+    copy_default(base_name, new_name)
+
+    redirect("/admin/" + new_name)
+
+
+@bottle.route('/admin/<overlay>')
+def serve_admin(overlay):
+    return template('admin', default_overlays=get_overlay_defaults(), user_overlays=get_user_overlays(),
+                    overlay_info=get_overlay(overlay), overlay_name=overlay, colors=colors)
+
+
+@bottle.route('/overlay/<overlay>')
+def serve_overlay(overlay):
+    return template('overlay', overlay=get_overlay(overlay), overlay_name=overlay)
 
 
 @bottle.route('/background')
@@ -76,46 +96,42 @@ def serve_assets_js(filename):
 @sio.on('connect', namespace='/websocket')
 def sio_connect(sid, environ):
     logger.info('connect: ' + sid)
-    sio.emit('online', merge_dicts(get_overlay_defaults(), curr_overlay_info), namespace='/websocket')
+    sio.emit('online', get_all_overlays(), namespace='/websocket')
 
 
 @sio.on('set text', namespace='/websocket')
 def sio_graphics_event(sid, data):
     logger.info('text update event: ' + str(data))
-    if data['item'] in curr_overlay_info:
-        curr_overlay_info[data['item']]['text'] = data['value']
-    else:
-        curr_overlay_info[data['item']] = {'text': data['value']}
+
+    update_overlay(data['overlay'], data['item'], 'text', data['value'])
+
     sio.emit('change text', data, namespace='/websocket')
 
 
 @sio.on('set bg', namespace='/websocket')
 def sio_bg_event(sid, data):
     logger.info('bg update event: ' + str(data))
-    if data['item'] in curr_overlay_info:
-        curr_overlay_info[data['item']]['bg'] = data['value']
-    else:
-        curr_overlay_info[data['item']] = {'bg': data['value']}
+
+    update_overlay(data['overlay'], data['item'], 'bg', data['value'])
+
     sio.emit('change bg', data, namespace='/websocket')
 
 
 @sio.on('show', namespace='/websocket')
 def sio_show_event(sid, data):
     logger.info('show event: ' + str(data))
-    if data['item'] in curr_overlay_info:
-        curr_overlay_info[data['item']]['display'] = 'show'
-    else:
-        curr_overlay_info[data['item']] = {'display': 'show'}
+
+    update_overlay(data['overlay'], data['item'], 'display', 'show')
+
     sio.emit('change show', data, namespace='/websocket')
 
 
 @sio.on('hide', namespace='/websocket')
 def sio_hid_event(sid, data):
     logger.info('hide event: ' + str(data))
-    if data['item'] in curr_overlay_info:
-        curr_overlay_info[data['item']]['display'] = 'hide'
-    else:
-        curr_overlay_info[data['item']] = {'display': 'hide'}
+
+    update_overlay(data['overlay'], data['item'], 'display', 'hide')
+
     sio.emit('change hide', data, namespace='/websocket')
 
 

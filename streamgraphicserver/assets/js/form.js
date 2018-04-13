@@ -1,45 +1,18 @@
-var socket = io.connect('/websocket');
-
-socket.on('online', function (msg) {
-    console.info('online');
-    updateAll(msg);
-});
-socket.on('response', function (msg) {
-    console.info(msg);
-});
-socket.on('change text', function (msg) {
-    console.info('update text ' + msg['item'] + ' ' + msg['value']);
-
-    updateText(msg['item'], msg['value']);
-});
-socket.on('change bg', function (msg) {
-    console.info('update bg ' + msg['item'] + ' ' + msg['value']);
-
-    updateBG(msg['item'], msg['value']);
-});
-socket.on('change hide', function (msg) {
-    console.info('hide ' + msg['item']);
-
-    hide(msg['item']);
-});
-socket.on('change show', function (msg) {
-    console.info('show ' + msg['item']);
-    show(msg['item']);
-});
-
-function update(item) {
-    var updateItemText = $('#' + item + '-text-form');
-    var updateItemBG = $('#' + item + '-bg-form');
-    var updateItemDisplay = $('#' + item + '-display-form');
+function update(overlay, item) {
+    var updateItemText = $('#' + overlay + '-' + item + '-text-form');
+    var updateItemBG = $('#' + overlay + '-' + item + '-bg-form');
+    var updateItemDisplay = $('#' + overlay + '-' + item + '-display-form');
 
     if (updateItemText.length) {
         socket.emit('set text', {
+            'overlay': overlay,
             'item': item,
             'value': updateItemText.val()
         });
     }
     if (updateItemBG.length) {
         socket.emit('set bg', {
+            'overlay': overlay,
             'item': item,
             'value': updateItemBG.val()
         });
@@ -47,58 +20,42 @@ function update(item) {
     if (updateItemDisplay.length) {
         if (updateItemDisplay.prop("checked")) {
             socket.emit('show', {
+                'overlay': overlay,
                 'item': item
             });
         } else {
             socket.emit('hide', {
+                'overlay': overlay,
                 'item': item
             });
         }
     }
 }
 
-function updateAll(msg) {
-    $.each(msg, function (key, value) {
-        if ('text' in value) {
-            updateText(key, value['text']);
-        }
-        if ('bg' in value) {
-            updateBG(key, value['bg']);
-        }
-        if ('display' in value) {
-            if (value['display'] === 'show') {
-                show(key)
-            } else {
-                hide(key)
-            }
-        }
-    });
-}
-
 function submitAll() {
     $("#form button, input[type='button']").click()
 }
 
-function updateText(item, value) {
-    var updateItem = $('#' + item + '-text-form');
+function updateText(overlay, item, value) {
+    var updateItem = $('#' + overlay + '-' + item + '-text-form');
 
     updateItem.val(value);
 }
 
-function updateBG(item, value) {
-    var updateItem = $('#' + item + '-bg-form');
+function updateBG(overlay, item, value) {
+    var updateItem = $('#' + overlay + '-' + item + '-bg-form');
 
     updateItem.val(value);
 }
 
-function hide(item) {
-    var updateItem = $('#' + item + '-display-form');
+function hide(overlay, item) {
+    var updateItem = $('#' + overlay + '-' + item + '-display-form');
 
     updateItem.prop("checked", false);
 }
 
-function show(item) {
-    var updateItem = $('#' + item + '-display-form');
+function show(overlay, item) {
+    var updateItem = $('#' + overlay + '-' + item + '-display-form');
 
     updateItem.prop("checked", true);
 }

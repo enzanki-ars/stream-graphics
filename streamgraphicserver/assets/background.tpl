@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/all.css">
 </head>
 <body>
-<div id="background" class="white-bg w-24-h-24">
+<div id="background" class="white-bg w-24 h-24">
 
 </div>
 
