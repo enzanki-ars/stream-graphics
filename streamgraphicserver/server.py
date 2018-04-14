@@ -44,7 +44,7 @@ colors = ['black-bg',
 
 @bottle.route('/')
 def serve_index():
-    return template('index', default_overlays=get_overlay_defaults(), user_overlays=get_user_overlays())
+    return jinja2_template('index.jinja2', default_overlays=get_overlay_defaults(), user_overlays=get_user_overlays())
 
 
 @bottle.route('/copy-default-overlay')
@@ -69,18 +69,43 @@ def copy_default_overlay():
 
 @bottle.route('/admin/<overlay>')
 def serve_admin(overlay):
-    return template('admin', default_overlays=get_overlay_defaults(), user_overlays=get_user_overlays(),
-                    overlay_info=get_overlay(overlay), overlay_name=overlay, colors=colors)
+    return jinja2_template('admin.jinja2', default_overlays=get_overlay_defaults(), user_overlays=get_user_overlays(),
+                           overlay_info=get_overlay(overlay), overlay_name=overlay, colors=colors)
 
 
-@bottle.route('/overlay/<overlay>')
-def serve_overlay(overlay):
-    return template('overlay', overlay=get_overlay(overlay), overlay_name=overlay)
+@bottle.route('/overlay/<overlay_name>')
+def serve_overlay(overlay_name):
+    overlay = get_overlay(overlay_name)
+
+    overlay_classes = {}
+
+    for item in overlay:
+        overlay_classes[item] = ''
+
+        if 'bg' in overlay[item]:
+            overlay_classes[item] += overlay[item]['bg'] + ' '
+        if 'display' in overlay[item]:
+            overlay_classes[item] += overlay[item]['display'] + ' '
+        if 'text-color' in overlay[item]:
+            overlay_classes[item] += overlay[item]['text-color'] + '-text '
+        if 'text-style' in overlay[item]:
+            overlay_classes[item] += 'text-' + overlay[item]['text-style'] + ' '
+        if 'x' in overlay[item]:
+            overlay_classes[item] += 'x-' + str(overlay[item]['x']) + ' '
+        if 'y' in overlay[item]:
+            overlay_classes[item] += 'y-' + str(overlay[item]['y']) + ' '
+        if 'w' in overlay[item]:
+            overlay_classes[item] += 'w-' + str(overlay[item]['w']) + ' '
+        if 'h' in overlay[item]:
+            overlay_classes[item] += 'h-' + str(overlay[item]['h']) + ' '
+
+    return jinja2_template('overlay.jinja2', overlay=overlay, overlay_classes=overlay_classes,
+                           overlay_name=overlay_name)
 
 
 @bottle.route('/background')
 def serve_background():
-    return template('background')
+    return jinja2_template('background.jinja2')
 
 
 @bottle.route('/assets/css/<filename>')
