@@ -1,16 +1,14 @@
 # enzanki_ars's Stream Graphics (v4)
 
-_v4.0.2_
+_v4.1.0_
 
 ## Known issues
 
-- Text will overflow if too large.
+- Text will be cut off using a '...' if the text is too long.
     
 ## Future plans
 
-- Add a "Update all" button.
 - Add preview on admin page.
-- Save current graphic configuration in case of server resets.
 
 ## Demo
 
