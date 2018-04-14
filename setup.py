@@ -17,7 +17,8 @@ setup(
               'tornado >= 4.5, < 4.6',
               'gevent >= 1.3a2, < 1.4',
               'gevent-websocket >= 0.10, < 0.11',
-              'python-socketio >= 1.9, < 1.10'],
+              'python-socketio >= 1.9, < 1.10',
+              'ruamel.yaml == 0.15.37'],
     packages=['streamgraphicserver'],
     package_dir={
         'streamgraphicserver': 'streamgraphicserver'

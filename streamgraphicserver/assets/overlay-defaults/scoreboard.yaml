@@ -1,0 +1,42 @@
+---
+team1-name:
+  text: Team 1
+  bg: blue-bg
+  display: show
+  text-color: white
+  text-style: bold
+  x: 1
+  y: 2
+  w: 4
+  h: 1
+team1-score:
+  text: '0'
+  bg: black-bg
+  display: show
+  text-color: white
+  text-style: normal
+  x: 5
+  y: 2
+  w: 1
+  h: 1
+team2-name:
+  text: Team 2
+  bg: red-bg
+  display: show
+  text-color: white
+  text-style: bold
+  x: 1
+  y: 3
+  w: 4
+  h: 1
+team2-score:
+  text: '0'
+  bg: black-bg
+  display: show
+  text-color: white
+  text-style: normal
+  x: 5
+  y: 3
+  w: 1
+  h: 1
+  
