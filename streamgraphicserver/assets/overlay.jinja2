@@ -33,33 +33,14 @@
     <script src="/assets/js/overlay.js"></script>
 </head>
 <body>
-% for item in overlay:
+{% for item in overlay %}
 
-<%
-    classes = ""
-    if 'bg' in overlay[item]:
-        classes += overlay[item]['bg'] + ' '
-    if 'display' in overlay[item]:
-        classes += overlay[item]['display'] + ' '
-    if 'text-color' in overlay[item]:
-        classes += overlay[item]['text-color'] + '-text '
-    if 'text-style' in overlay[item]:
-        classes += 'text-' + overlay[item]['text-style'] + ' '
-    if 'x' in overlay[item]:
-        classes += 'x-' + str(overlay[item]['x']) + ' '
-    if 'y' in overlay[item]:
-        classes += 'y-' + str(overlay[item]['y']) + ' '
-    if 'w' in overlay[item]:
-        classes += 'w-' + str(overlay[item]['w']) + ' '
-    if 'h' in overlay[item]:
-        classes += 'h-' + str(overlay[item]['h']) + ' '
-%>
-<div id="{{overlay_name}}-{{ item }}" class="{{classes}}">
-    % if 'text' in overlay[item]:
-    {{ overlay[item]['text'] }}
-    % end
-</div>
-% end
+    <div id="{{ overlay_name }}-{{ item }}" class="{{ overlay_classes[item] }}">
+        {% if 'text' in overlay[item] %}
+            {{ overlay[item]['text'] }}
+        {% endif %}
+    </div>
+{% endfor %}
 
 </body>
 </html>
