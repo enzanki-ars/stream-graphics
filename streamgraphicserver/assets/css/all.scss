@@ -2,6 +2,7 @@
 
 $column-horizontal: 24;
 $column-vertical: 24;
+$columns: max($column-vertical, $column-vertical);
 
 $fills: ('black': rgb(0, 0, 0),
         'red': rgb(192, 0, 0),
@@ -23,11 +24,11 @@ $fills: ('black': rgb(0, 0, 0),
 
 .overlay {
   display: grid;
-  grid-template-columns: repeat(24, calc(100vw / 24));
-  grid-template-rows: repeat(24, calc(100vh / 24));
+  grid-template-columns: repeat(#{$column-vertical}, calc(100vw / #{$column-horizontal}));
+  grid-template-rows: repeat(#{$column-vertical}, calc(100vh / #{$column-vertical}));
 }
 
-@for $i from 0 through 23 {
+@for $i from 0 through max($column-horizontal, $column-vertical) {
   .x-s-#{$i} {
     grid-column-start: $i + 1;
   }
@@ -47,7 +48,7 @@ $fills: ('black': rgb(0, 0, 0),
 }
 
 .text {
-  font-size: calc((100vmin / 24) - 1vmin);
+  font-size: calc((100vmin / #{$columns}) - 1vmin);
   line-height: calc((100vh / #{$column-vertical}));
   font-family: 'Open Sans', sans-serif;
   alignment-baseline: middle;

@@ -18,30 +18,26 @@
 
     <link rel="stylesheet" type="text/css" href="/assets/css/all.css">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script defer src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
 
-    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
-            integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" crossorigin="anonymous"></script>
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"
             crossorigin="anonymous"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"
-            integrity="sha256-Thm9kMI2BQKxVnCWipQIGeb8QVl2lohO+WWWfCiF8b0=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment.min.js"
-            integrity="sha256-DELCOgoVsZqjT78lDC7zcX+YFp+PEjh1k23mBMoDBwo=" crossorigin="anonymous"></script>
-    <script src="/assets/js/all.js"></script>
-    <script src="/assets/js/overlay.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment.min.js"
+            crossorigin="anonymous"></script>
+    <script defer src="/assets/js/all.js"></script>
+    <script defer src="/assets/js/overlay.js"></script>
 </head>
 <body>
 <div id="{{ overlay_name }}" class="overlay">
-{% for item in overlay %}
-
-    <div id="{{ overlay_name }}-{{ item }}" class="{{ overlay_classes[item] }}">
-        {% if 'text' in overlay[item] %}
-            {{ overlay[item]['text'] }}
-        {% endif %}
-    </div>
-{% endfor %}
+    {% for item in overlay %}
+        <div id="{{ overlay_name }}-{{ item }}" class="{{ overlay_classes[item] }}">
+            {%- if 'text' in overlay[item] %}
+                {{ overlay[item]['text'] }}
+            {%- endif %}
+        </div>
+    {% endfor %}
 </div>
 </body>
 </html>
