@@ -90,14 +90,14 @@ def serve_overlay(overlay_name):
             overlay_classes[item] += overlay[item]['text-color'] + '-text '
         if 'text-style' in overlay[item]:
             overlay_classes[item] += 'text-' + overlay[item]['text-style'] + ' '
-        if 'x' in overlay[item]:
-            overlay_classes[item] += 'x-' + str(overlay[item]['x']) + ' '
-        if 'y' in overlay[item]:
-            overlay_classes[item] += 'y-' + str(overlay[item]['y']) + ' '
-        if 'w' in overlay[item]:
-            overlay_classes[item] += 'w-' + str(overlay[item]['w']) + ' '
-        if 'h' in overlay[item]:
-            overlay_classes[item] += 'h-' + str(overlay[item]['h']) + ' '
+        if 'x-s' in overlay[item]:
+            overlay_classes[item] += 'x-s-' + str(overlay[item]['x-s']) + ' '
+        if 'y-s' in overlay[item]:
+            overlay_classes[item] += 'y-s-' + str(overlay[item]['y-s']) + ' '
+        if 'x-e' in overlay[item]:
+            overlay_classes[item] += 'x-e-' + str(overlay[item]['x-e']) + ' '
+        if 'y-e' in overlay[item]:
+            overlay_classes[item] += 'y-e-' + str(overlay[item]['y-e']) + ' '
 
     return jinja2_template('overlay.jinja2', overlay=overlay, overlay_classes=overlay_classes,
                            overlay_name=overlay_name)

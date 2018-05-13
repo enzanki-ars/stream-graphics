@@ -5,38 +5,37 @@ team1-name:
   display: show
   text-color: white
   text-style: bold
-  x: 1
-  y: 2
-  w: 4
-  h: 1
+  x-s: 1
+  y-s: 2
+  x-e: 5
+  y-e: 3
 team1-score:
   text: '0'
   bg: black-bg
   display: show
   text-color: white
   text-style: normal
-  x: 5
-  y: 2
-  w: 1
-  h: 1
+  x-s: 5
+  y-s: 2
+  x-e: 6
+  y-e: 3
 team2-name:
   text: Team 2
   bg: red-bg
   display: show
   text-color: white
   text-style: bold
-  x: 1
-  y: 3
-  w: 4
-  h: 1
+  x-s: 1
+  y-s: 3
+  x-e: 5
+  y-e: 4
 team2-score:
   text: '0'
   bg: black-bg
   display: show
   text-color: white
   text-style: normal
-  x: 5
-  y: 3
-  w: 1
-  h: 1
-  
+  x-s: 5
+  y-s: 3
+  x-e: 6
+  y-e: 4

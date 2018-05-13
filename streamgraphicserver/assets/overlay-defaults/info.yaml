@@ -5,57 +5,57 @@ left-info-top:
   display: show
   text-color: white
   text-style: bold
-  x: 1
-  y: 20
-  w: 6
-  h: 1
+  x-s: 1
+  y-s: 20
+  x-e: 7
+  y-e: 21
 left-info-bottom:
   text: Testing left side
   bg: grey-bg
   display: show
   text-color: white
   text-style: normal
-  x: 1
-  y: 21
-  w: 6
-  h: 1
+  x-s: 1
+  y-s: 21
+  x-e: 7
+  y-e: 22
 center-info-top:
   text: Center
   bg: grey-bg
   display: show
   text-color: white
   text-style: bold
-  x: 7
-  y: 20
-  w: 10
-  h: 1
+  x-s: 7
+  y-s: 20
+  x-e: 17
+  y-e: 21
 center-info-bottom:
   text: This text is in the center
   bg: grey-bg
   display: show
   text-color: white
   text-style: normal
-  x: 7
-  y: 21
-  w: 10
-  h: 1
+  x-s: 7
+  y-s: 21
+  x-e: 17
+  y-e: 22
 right-info-top:
   text: Right Side
   bg: grey-bg
   display: show
   text-color: white
   text-style: bold
-  x: 17
-  y: 20
-  w: 6
-  h: 1
+  x-s: 17
+  y-s: 20
+  x-e: 23
+  y-e: 21
 right-info-bottom:
   text: Testing right side
   bg: grey-bg
   display: show
   text-color: white
   text-style: normal
-  x: 17
-  y: 21
-  w: 6
-  h: 1
+  x-s: 17
+  y-s: 21
+  x-e: 23
+  y-e: 22
