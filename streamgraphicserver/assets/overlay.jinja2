@@ -33,6 +33,7 @@
     <script src="/assets/js/overlay.js"></script>
 </head>
 <body>
+<div id="{{ overlay_name }}" class="overlay">
 {% for item in overlay %}
 
     <div id="{{ overlay_name }}-{{ item }}" class="{{ overlay_classes[item] }}">
@@ -41,6 +42,6 @@
         {% endif %}
     </div>
 {% endfor %}
-
+</div>
 </body>
 </html>

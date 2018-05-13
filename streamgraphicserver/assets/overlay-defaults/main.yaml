@@ -5,66 +5,66 @@ top-title:
   display: hide
   text-color: white
   text-style: bold
-  x: 1
-  y: 1
-  w: 3
-  h: 1
+  x-s: 1
+  y-s: 1
+  x-e: 4
+  y-e: 2
 top-info:
   text: Testing Graphics
   bg: black-bg
   display: hide
   text-color: white
   text-style: normal
-  x: 4
-  y: 1
-  w: 4
-  h: 1
+  x-s: 4
+  y-s: 1
+  x-e: 8
+  y-e: 2
 source:
   text: Testing Graphics
   bg: black-bg
   display: hide
   text-color: white
   text-style: normal
-  x: 16
-  y: 1
-  w: 4
-  h: 1
+  x-s: 16
+  y-s: 1
+  x-e: 20
+  y-e: 2
 status:
   text: LIVE
   bg: red-bg
   display: show
   text-color: white
   text-style: bold
-  x: 20
-  y: 1
-  w: 3
-  h: 1
+  x-s: 20
+  y-s: 1
+  x-e: 23
+  y-e: 2
 name:
   text: enzankiars
   bg: black-bg
   display: show
   text-color: white
   text-style: bold
-  x: 1
-  y: 22
-  w: 3
-  h: 1
+  x-s: 1
+  y-s: 22
+  x-e: 4
+  y-e: 23
 bottom-bar:
   text: Bottom bar.  Does not scroll.
   bg: black-bg
   display: hide
   text-color: white
   text-style: bold
-  x: 4
-  y: 22
-  w: 16
-  h: 1
+  x-s: 4
+  y-s: 22
+  x-e: 20
+  y-e: 23
 time:
   bg: black-bg
   display: show
   text-color: white
   text-style: bold
-  x: 20
-  y: 22
-  w: 3
-  h: 1
+  x-s: 20
+  y-s: 22
+  x-e: 23
+  y-e: 23

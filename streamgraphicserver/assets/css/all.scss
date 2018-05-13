@@ -21,27 +21,34 @@ $fills: ('black': rgb(0, 0, 0),
         'light-grey': rgb(192, 192, 192),
         'white': rgb(255, 255, 255));
 
-@for $i from 0 through 24 {
-  .x-#{$i} {
-    position: absolute;
-    left: calc((100vw / #{$column-horizontal}) * #{$i});
+.overlay {
+  display: grid;
+  grid-template-columns: repeat(24, calc(100vw / 24));
+  grid-template-rows: repeat(24, calc(100vh / 24));
+}
+
+@for $i from 0 through 23 {
+  .x-s-#{$i} {
+    grid-column-start: $i + 1;
   }
-  .y-#{$i} {
-    position: absolute;
-    top: calc((100vh / #{$column-vertical}) * #{$i});
+  .y-s-#{$i} {
+    grid-row-start: $i + 1;
+  }
+  .x-e-#{$i} {
+    grid-column-end: $i + 1;
+  }
+  .y-e-#{$i} {
+    grid-row-end: $i + 1;
   }
 
-  .w-#{$i} {
-    width: calc((100vw / #{$column-horizontal}) * #{$i});
-  }
-  .h-#{$i} {
-    line-height: calc((100vh / #{$column-vertical}) * #{$i});
-    height: calc((100vh / #{$column-vertical}) * #{$i});
+  .text-height-#{$i} {
+    line-height: calc((100vh / #{$column-vertical}) * #{$i}) !important;
   }
 }
 
 .text {
   font-size: calc((100vmin / 24) - 1vmin);
+  line-height: calc((100vh / #{$column-vertical}));
   font-family: 'Open Sans', sans-serif;
   alignment-baseline: middle;
   text-anchor: middle;
