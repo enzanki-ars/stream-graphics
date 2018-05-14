@@ -1,0 +1,76 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Admin
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <form class="px-4 py-3" action="/copy-default-admin">
+                        <div class="form-group">
+                            <label for="default-overlay-list2" class="sr-only">Default Overlays</label>
+                            <select class="form-control" name="base_name" id="default-overlay-list2">
+                                {% for overlay in default_overlays %}
+                                    <option>{{ overlay }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleDropdownForm2">New Name</label>
+                            <input type="text" class="form-control" id="exampleDropdownForm2" name="new_name"
+                                   placeholder="New Name">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Copy</button>
+                    </form>
+                    <div class="dropdown-divider"></div>
+                    {% for overlay in user_overlays %}
+                        <a class="dropdown-item" href="/admin/{{ overlay }}">{{ overlay }}</a>
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Overlay
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <form class="px-4 py-3" action="/copy-default-overlay">
+                        <div class="form-group">
+                            <label for="default-overlay-list3" class="sr-only">Default Overlays</label>
+                            <select class="form-control" name="base_name" id="default-overlay-list3">
+                                {% for overlay in default_overlays %}
+                                    <option>{{ overlay }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleDropdownForm3">New Name</label>
+                            <input type="text" class="form-control" id="exampleDropdownForm3" name="new_name"
+                                   placeholder="New Name">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Copy</button>
+                    </form>
+                    <div class="dropdown-divider"></div>
+                    {% for overlay in user_overlays %}
+                        <a class="dropdown-item" href="/overlay/{{ overlay }}">{{ overlay }}</a>
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/background">Background</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="submitAll()">Submit All</button>
+        </form>
+    </div>
+</nav>
